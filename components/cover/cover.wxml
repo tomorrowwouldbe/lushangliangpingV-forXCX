@@ -1,0 +1,8 @@
+<view class="notice-cover" hidden="{{!isShow}}">
+  <view class="flex-column notice">
+    <image src="../../img/close@3x.png" class="close-icon"></image>
+    <view class="notice-line">为了您的购物安全，请授权使用用户信息！</view>
+    <view class="notice-line">拒绝授权将无法正常下单购买等...</view>
+    
+  </view>
+</view>

@@ -1,0 +1,20 @@
+.self-column{
+  background-color:#fff;
+  padding-left:20rpx;
+  margin-top:20rpx;
+  color:#666;
+}
+.self-line{
+  height:80rpx;
+  line-height:78rpx;
+  padding-right:20rpx;
+  border-bottom:2rpx solid #e5e5e5;
+}
+.arrow-right{
+  width:60rpx;height:60rpx;
+  margin-top:10rpx;
+}
+.self-column .self-line:last-child{
+  border-bottom:0;
+  line-height:80rpx;
+}

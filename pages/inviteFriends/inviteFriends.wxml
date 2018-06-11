@@ -1,0 +1,10 @@
+<view class="page-invite">
+  <image lazy-load="true" src="{{image_origin+'yaoqing_one.png'}}" class="invite-bg"></image>
+  <view class="qrcode-box">
+    <image lazy-load="true" src="{{image_origin+'vip_yaoqing.png'}}" class="qrcode-bg" mode="widthFix"></image>
+    <image lazy-load="true" src="{{image_origin+'yaoqing_erweima.png'}}" class="qrcode-img" mode="widthFix"></image>
+  </view>
+
+  <!-- <view class="invite-btn">邀请好友成为创客会员</view> -->
+  <button open-type="share" class="invite-btn">邀请好友成为创客会员</button>
+</view>

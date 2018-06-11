@@ -1,0 +1,45 @@
+<view class="page-balance">
+  <view class="balance-header-box">
+    <image lazy-load="true" src="{{image_origin+'balance_banner.png'}}" mode="widthFix" class="balance_banner"></image>
+    <view class="balance-header clearfix">
+      <view class="header-item lt">
+        <view class="header-i-txt">积分余额（分）</view>
+        <view class="header-i-num">{{points.u_info.scores}}</view>
+      </view>
+      <view class="header-item lt">
+        <view class="header-i-txt">消费积分（分）</view>
+        <view class="header-i-num">{{points.u_info.outscs}}</view>
+      </view>
+    </view>
+    <image lazy-load="true" src="../../img/prompt_blance.png" mode="widthFix" class="help-icon" bindtap="showHelpTap"></image>
+  </view>
+
+  <view class="charge-items">
+    <block wx:for="{{points.s_lst}}" wx:for-item="item" wx:key="key">
+      <view class="charge-item clearfix">
+        <view class="charge-i-left lt">
+          <view class="charge-i-txt text-overflow">{{item.desc}}</view>
+          <view class="charge-i-time">{{item.format_createtime}}</view>
+        </view>
+        <view class="charge-i-right charge-add rt">{{item.cash<0?item.cash:('+'+item.cash)}}</view>
+      </view>
+    </block>
+  </view>
+  
+
+  <view wx:if="{{helpAlertShow}}" class="help-alert-box">
+    <view class="help-alert">
+      <image lazy-load="true" src="../../img/close_blance.png" class="close_blance" bindtap="closeHelpTap"></image>
+      <view class="help-txt">
+        <view>用现金，微信和储值本金支付</view>
+        <view>您讲获得消费积分</view>
+        <view>消费积分可抵现金支付</view>
+        <view>1积分=1元钱</view>
+      </view>
+      <view class="btn-column" bindtap="closeHelpTap">
+        <image lazy-load="true" src="../../img/rectangle.png" class="btn-img"></image>
+        <text class="btn-txt">好的</text>
+      </view>
+    </view>
+  </view>
+</view>

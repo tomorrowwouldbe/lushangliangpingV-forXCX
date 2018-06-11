@@ -1,0 +1,114 @@
+.recharge-column{
+  height:252rpx;
+  margin-top:20rpx;
+  background-color:#fff;
+  padding:40rpx 30rpx;
+  font-size:36rpx;
+  color:#333;
+}
+.reacharge-num{
+  margin-top:40rpx;
+  position:relative;
+  padding-bottom:10rpx;
+  border-bottom:2rpx solid #e5e5e5;
+}
+.recharge-input,.recharge-input:focus{
+  color:#333;
+  font-size:30rpx;
+  padding-left:40rpx;
+   height:70rpx;
+  line-height:70rpx; 
+}
+.recharge-sign{
+  position:absolute;
+  top:10rpx;left:0; 
+}
+.recharge-btn{height:80rpx;line-height:80rpx;border-radius:8rpx;}
+
+.recharge-items{
+  background-color:#fff;
+  margin-top:20rpx;
+  padding-left:20rpx;
+}
+.recharge-item{
+  border-bottom:2rpx solid #e5e5e5;
+  line-height:110rpx;
+  color:#666;
+  font-size:28rpx;
+}
+.recharge-img{
+  width:60rpx;height:60rpx;
+  margin-top:24rpx;
+  margin-right:20rpx;
+}
+.choose-iocn{
+  width:40rpx;height:40rpx;
+  margin-top:35rpx;
+  margin-right:20rpx;
+}
+
+.fixed-bottom-box{
+  position:fixed;
+  bottom:0;left:0;
+  width:100%;
+  padding:100rpx 40rpx;
+}
+.attention{
+  text-align:center;
+  margin-bottom:60rpx;
+  color:#ccc;
+  font-size:30rpx;
+  line-height:30rpx;
+}
+.attention-choose{
+  width:30rpx;height:30rpx;
+  margin-right:20rpx;
+}
+
+.pwd-alert{
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  background-color:rgba(0,0,0,0.5);
+  z-index:100;
+}
+.pwd-box{
+  position:absolute;
+  top:0;bottom:0;left:0;right:0;margin:auto;
+  width:600rpx;height:440rpx;
+  background-color:#E5E5E5;
+  border-radius:8rpx;
+  padding:0 30rpx;
+}
+.pwd-header{
+  height:140rpx;
+  line-height:140rpx;
+  color:#666;
+  font-size:32rpx;
+  text-align:center;
+}
+.pwd-input{
+  width:100%;
+  height:80rpx;
+  line-height:80rpx;
+  border:2rpx solid #999;
+  padding:0 20rpx;
+}
+.pwd-att{
+  font-size:24rpx;
+  color:#cf2122;
+  margin-top:16rpx;
+  margin-bottom:32rpx;
+  text-align:center;
+}
+.btn-confirm{
+  width:100%;
+  height:80rpx;
+  line-height:80rpx;
+}
+
+.disabled-btn{
+  background-color:#999 !important;
+  border-color:#999 !important;
+  color:#fff !important;
+}

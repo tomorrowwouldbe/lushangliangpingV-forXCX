@@ -1,0 +1,8 @@
+<view class="loading-cover" hidden="{{!isShow}}">
+   <!-- <image lazy-load="true" src="../../img/loading.gif" mode="widthFix" class="loading-icon"></image>  -->
+  <view class="loading-icon">
+    <text>路上</text>
+    <text>良品</text>
+    <view class="line"></view>
+  </view>
+</view>

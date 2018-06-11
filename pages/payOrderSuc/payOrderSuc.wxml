@@ -1,0 +1,21 @@
+<view class="page-payOrderSuc">
+  <view class="pOS-header main">
+    <image src="../../img/choosed-icon.png" class="pOS-icon"></image>
+    <text>订单支付成功，我们会第一时间给您发货！</text>
+  </view>
+  <view class="pOS-body main">
+    <view class="body-item">
+      订单号： <text>{{order_sn}}</text>
+    </view>
+    <view class="body-item">
+      付款金额： <text> ¥ {{total_fee}}</text>
+    </view>
+  </view>
+  <view class="pOS-footer main" align="center" style="height:{{winHeight-130}}px">
+    <view class="footer-att">请保持手机畅通，等待收货</view>
+    <view class="pOS-btns">
+      <text class="btn-1 btn" bindtap="goOrderDeatil">查看订单</text>
+      <text class="btn-2 btn" bindtap="goIndex">返回首页</text>
+    </view>
+  </view>
+</view>

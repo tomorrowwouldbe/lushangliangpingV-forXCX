@@ -1,0 +1,44 @@
+<view class="page-register flex-column">
+  <loadingC id="loadingC"/>
+  <image src="../../img/firm_logo.png" mode="widthFix" class="logo"></image>
+  <!-- <view class="register-column">
+    <view class="register-line clearfix">
+      <input type="number" maxlength="11" class="register-input lt" placeholder="输入手机号" bindinput="phoneInput"></input>
+      <text wx:if="{{get_code_status}}" class="get_btn lt" bindtap="getCode">获取验证码</text>
+      <text wx:else class="get_btn lt">{{remain_time}}s</text>
+    </view>
+    <view class="register-line clearfix">
+      <input type="number" class="register-input lt" placeholder="输入验证码" bindinput="codeInput"></input>
+      <text wx:if="{{register_status==true}}" class="get_btn lt" bindtap="registerTap">领取红包</text>
+      <text wx:elif="{{register_status==false}}" class="get_btn lt">领取红包</text>
+    </view>
+  </view> -->
+  <view class="register-column">
+    <view class="register-line clearfix">
+      <input type="number" maxlength="11" class="register-input lt" placeholder="输入手机号" bindinput="phoneInput"></input>
+    </view>
+    <view class="register-line clearfix">
+      <input type="number" class="register-input lt" placeholder="输入验证码" bindinput="codeInput"></input>
+      <text wx:if="{{get_code_status}}" class="get_btn lt" bindtap="getCode">获取验证码</text>
+      <text wx:else class="get_btn lt">{{remain_time}}s</text>
+    </view>
+    <button wx:if="{{register_status==true}}" class="login_btn" bindtap="registerTap">登录</button>
+    <button wx:elif="{{register_status==false}}" class="login_btn">登录</button>
+  </view>
+
+  <view wx:if="{{false}}" class="coupons-items">
+    <block wx:for="{{coupons}}" wx:for-item="item" wx:key="key">
+      <view class="coupon-item canuse">
+        <image lazy-load="true" src="../../img/weiuse.png" class="coupon-img"></image>
+        <view class="coupon-money">
+          <text class="money-sign">￥</text>
+          <text class="money-num">{{item.money}}</text>
+        </view>
+        <view class="coupon-detail">
+          <view class="coupon-txt">消费{{item.condition}}元可用</view>
+          <view class="coupon-time">有效时间：{{item.format_use_start_time}}至{{item.format_use_end_time}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

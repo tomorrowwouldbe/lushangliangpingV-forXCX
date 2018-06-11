@@ -1,0 +1,222 @@
+<wxs module="filters" src="../../addmul.wxs"></wxs>
+<view class="page-submitOrder {{(couponsShow||balanceShow||interShow)?'no-scroll':''}}">
+  <loadingC id="loadingC"/>
+  <!-- 地址栏 -->
+  <navigator url="../receiveAddrList/receiveAddrList">
+    <view class="receipt-infor">
+      <view wx:if="{{defaultAddress&&defaultAddress.is_default}}">
+        <view class="receipt-user">
+          <text class="user-name">{{defaultAddress.contacts}}</text>
+          <text class="user-tel">{{defaultAddress.phone}}</text>
+        </view>
+        <view class="receipt-address text-overflow">
+          <image lazy-load="true" src="../../img/location_new.png" class="addr-icon"></image>
+          <text>{{defaultAddress.province+defaultAddress.country+defaultAddress.region+defaultAddress.detaile_address}}</text>
+        </view>
+      </view>
+      <view wx:else class="setStatic">现在去设置收货地址</view>
+      <image lazy-load="true" src="../../img/arrow-right.png" class="arrow-right addr-arrow"></image>
+    </view>
+  </navigator>
+
+  <!-- 请更换收货地址或商品 -->
+  <view wx:if="{{!isSupport}}" class="change_att">请更换收货地址或商品</view>
+
+  <view class="canuse-column">
+    <view class="canuse-line" style="padding-right:0;" bindtap="chooseCouponTap">
+      <text class="line-txt">优惠券</text>
+      <image lazy-load="true" src="../../img/arrow-right.png" class="arrow-right rt" style="margin-top:20rpx;"></image>
+      <view wx:if="{{coupon_list_id!=0}}" style="position:relative;top:-2rpx;" class="line-intro rt">已使用：<text class="canuse-num">1</text> 张</view>
+      
+      <view wx:if="{{coupon_list_id==0}}" class="line-intro rt">可用：<text class="canuse-num">{{coupon_canuse.length}}</text> 张</view>
+    </view>
+    <view class="canuse-line" style="padding-right:0;" bindtap="integralMortgage">
+      <text class="line-txt">积分</text>
+      <image lazy-load="true" src="../../img/arrow-right.png" class="arrow-right rt"></image> 
+      <view wx:if="{{points_use==0}}" class="line-intro rt">可用：<text class="canuse-num">{{order.points}}</text></view>
+      <view wx:else class="line-intro rt">可用：<text class="canuse-num">{{filters.toFix(order.points-points_use)}}</text></view>
+    </view>
+    <view class="canuse-line" style="padding-right:0;" bindtap="balanceMortgage">
+      <text class="line-txt">余额</text>
+       <image lazy-load="true" src="../../img/arrow-right.png" class="arrow-right rt"></image> 
+      <view wx:if="{{recharge_use==0}}" class="line-intro rt">可用：<text class="canuse-num"> ¥ {{order.recharge}}</text></view>
+      <view wx:else class="line-intro rt">可用：<text class="canuse-num"> ¥ {{filters.toFix(order.recharge-recharge_use)}}</text></view>
+    </view>
+  </view>
+
+
+  <view class="product-column">
+    <block wx:for="{{order.goods}}" wx:for-item="item" wx:key="key">
+      <view class="product-line">
+        <image src="{{item.original_img}}" class="product-img"></image>
+        <view wx:if="{{item.area==0}}" class="no-support">不支持销售</view>
+        <view class="product-detail">
+          <view class="product-name text-overflow">{{item.goods_name}}</view>
+          <view style="opacity:{{item.spec_key_name.length>0?'1':'0'}}" class="product-signs text-overflow">{{'('+item.spec_key_name+')'}}</view>
+          <view class="product-number clearfix">
+            <view wx:if="{{item.is_staff==0}}" class="price_1 lt" style="color:#666">原　价: ¥ <text>{{item.price}}</text></view>
+            <view wx:elif="{{item.is_staff==1}}" class="price_1 lt" style="color:#666">员工价: ¥ <text>{{item.staff_price}}</text></view>
+            <view wx:if="{{item.member_goods_price!=0}}" class="price_1 lt">会员价: ¥ <text>{{item.member_goods_price}}</text></view>
+            <text style="color:#999;position:absolute;top:80rpx;right:0">X{{item.goods_num}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+    <view class="product-total">
+      商品总额：<text class="product-sign"> ¥ </text><text class="price-num" style="color:#333">{{result.price}}</text>
+    </view>
+  </view>
+
+  <navigator wx:if="{{is_member==0}}" url="../becomeVip/becomeVip">
+    <view class="used-line member-line">
+      <text style="font-size:28rpx">会员优惠</text>
+       ¥ <text style="font-size:30rpx">{{filters.toFix(result.goods_price-result.is_member_price)}}</text>
+      <view class="used-right rt clearfix">
+        <text class="lt" style="font-size:26rpx">加入会员</text>
+        <image src="../../img/Arrow@3x.png" mode="widthFix" class="arrow lt"></image>
+      </view>
+    </view>
+  </navigator>
+
+  <view class="used-column">
+    <view wx:if="{{is_member==1}}" class="used-line">
+      <text>会员优惠</text>
+      <view class="used-right rt">
+        <text class="product-num">-</text>
+        <text class="product-sign"> ¥ </text>
+        <text class="product-num">{{result.member_price}}</text>
+      </view>
+    </view>
+    <view class="used-line">
+      <text>积分抵扣</text>
+      <view class="used-right rt">
+        <text class="product-num">-</text>
+        <text class="product-sign"> ¥ </text>
+        <text class="product-num">{{result.point_price}}</text>
+      </view>
+    </view>
+    <view class="used-line">
+      <text>余额抵扣</text>
+      <view class="used-right rt">
+        <text class="product-num">-</text>
+        <text class="product-sign"> ¥ </text>
+        <text class="product-num">{{result.recharge}}</text>
+      </view>
+    </view>
+    <view class="used-line">
+      <text>优惠券优惠</text>
+      <view class="used-right rt">
+        <text class="product-num">-</text>
+        <text class="product-sign"> ¥ </text>
+        <text class="product-num">{{result.coupon_price}}</text>
+      </view>
+    </view>
+    <view class="used-line">
+      <text>运费</text>
+      <view class="used-right rt">
+        <text class="product-sign"> ¥ </text>
+        <text class="product-num">{{result.exp_price}}</text>
+      </view>
+      <text wx:if="{{result.free_price>0}}" class="free-post rt">满{{result.free_price}}元包邮</text>
+    </view>
+    <view class="used-line clearfix">
+      <view class="rt">
+        已优惠：
+        <view class="used-right rt">
+          <text class="product-sign"> ¥ </text>
+          <text class="product-num">{{cut_num}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view style="height:110rpx;"></view>
+
+  <view class="fixed-bottom-column">
+    <view class="bottom-column">
+      <text>实付款： ¥ {{result.pay_price}}</text>
+      <form wx:if="{{!submit&&isSupport}}" bindsubmit="submit" report-submit='true'>
+        <button form-type="submit" type="default" class="submit-btn rt">立即支付</button>
+      </form>
+      <view wx:else class="submit-btn disabled-btn rt">立即支付</view>
+    </view>
+  </view>
+
+
+  <view wx:if="{{interShow}}" class="fixed-full">
+    <view class="integral-subcover" style="height:560rpx;">
+      <view class="inter-header">积分抵扣</view>
+      <view class="inter-body">
+        <view class="inter-line">待付款：{{result.pay_price}}</view>
+        <view class="inter-line">可用积分：{{order.points}}</view>
+        <view class="inter-line" style="font-size:24rpx;color:#999;">（1积分=1元）</view>
+        <input type="digit" bindfocus="interFocus" bindinput="interInput" value="{{points_use>0?points_use:points_use_back}}" placeholder="输入的积分不得大于{{inter_last_value}}" placeholder-style="color:#acacac" class="inter-input"></input>
+        <view wx:if="{{inter_warn.length>0}}" class="inter-line warn">{{inter_warn}}</view> 
+      </view>
+      <view class="inter-footer">
+        <text class="inter-comfirm" bindtap="confirmInter">确认</text>
+      </view>
+      <image src="../../img/close-icon.png" class="close-icon" bindtap="closeInter"></image>
+    </view>
+  </view>
+
+  <view wx:if="{{balanceShow}}" class="fixed-full">
+    <view class="integral-subcover" style="height:500rpx;">
+      <view class="inter-header">余额抵扣</view>
+      <view class="inter-body">
+        <view class="inter-line">待付款：{{result.pay_price}}</view>
+        <view class="inter-line">可用余额：{{order.recharge}}</view>
+        <input type="digit" bindfocus="balanceFocus" bindinput="balanceInput" value="{{recharge_use>0?recharge_use:recharge_use_back}}" placeholder="输入的余额不得大于{{balance_last_value}}" placeholder-style="color:#acacac" class="inter-input"></input>
+        <view wx:if="{{balance_warn.length>0}}" class="inter-line warn">{{balance_warn}}</view> 
+      </view>
+      <view class="inter-footer">
+        <text class="inter-comfirm" bindtap="confirmBalance">确认</text>
+      </view>
+      <image src="../../img/close-icon.png" class="close-icon" bindtap="closeInter"></image>
+    </view>
+  </view>
+
+
+
+  <view wx:if="{{couponsShow}}" class="fixed-full" bindtap="closeFull">
+    <view class="page-subcover" catchtap="openFull">
+    <view class="coupons-nav clearfix">
+      <view class="coupon-nav {{couponNavActive==0?'active':''}} lt" catchtap="changeNavActive" data-index="0"><text>可用( {{coupon_canuse.length}} )</text></view>
+      <view class="coupon-nav {{couponNavActive==1?'active':''}} lt" catchtap="changeNavActive" data-index="1"><text>不可用( {{coupon_nouse.length}} )</text></view>
+    </view>
+    <scroll-view wx:if="{{couponNavActive==0}}" scroll-y style="height:300px;" class="coupons-items">
+      <block wx:for="{{coupon_canuse}}" wx:for-item="item" wx:key="key">
+        <view class="coupon-item canuse" data-list_id="{{item.coupon_list_id}}" data-id="{{item.coupon_id}}" catchtap="chooseCoupon">
+          <image lazy-load="true" src="../../img/weiuse.png" class="coupon-img"></image>
+          <view wx:if="{{item.coupon_status}}" class="coupon_status">已选择</view>
+          <view class="coupon-money">
+            <text class="money-sign"> ¥ </text>
+            <text class="money-num">{{item.money}}</text>
+          </view>
+          <view class="coupon-detail">
+            <view class="coupon-txt">消费{{item.condition}}元可用</view>
+            <view class="coupon-time">有效时间：{{item.format_use_start_time}}至{{item.format_use_end_time}}</view>
+          </view>
+        </view>
+      </block>
+      </scroll-view>
+      <scroll-view wx:else scroll-y style="height:300px;" class="coupons-items">
+        <block wx:for="{{coupon_nouse}}" wx:for-item="item" wx:key="key">
+          <view class="coupon-item canuse" data-id="{{item.id}}">
+            <image lazy-load="true" src="../../img/weiuse.png" class="coupon-img"></image>
+            <view class="coupon-money">
+              <text class="money-sign"> ¥ </text>
+              <text class="money-num">{{item.money}}</text>
+            </view>
+            <view class="coupon-detail">
+              <view class="coupon-txt">消费{{item.condition}}元可用</view>
+              <view class="coupon-time">有效时间：{{item.use_start_time}}至{{item.use_end_time}}</view>
+            </view>
+          </view>
+        </block>
+      </scroll-view>
+      <view class="no-use-column">
+        <view class="no-use-btn" catchtap="notCouponTap">不使用优惠券</view>
+      </view>
+    </view>
+  </view>
+</view>

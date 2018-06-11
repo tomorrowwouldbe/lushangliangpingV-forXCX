@@ -1,0 +1,18 @@
+<import src="../../wxParse/wxParse.wxml"/>
+<loadingC id="loadingC"/>
+<view class="page-content">
+  <view class="cont-header">{{contentObj.title}}</view>
+  <view class="cont-summary">
+    <template is="wxParse" data="{{wxParseData:article1.nodes}}"/>
+  </view>
+  
+  <!-- <image wx:if="{{can_click==true}}" src="../../img/content_buy.png" bindtap="goProductDetail" class="fixed-btn" mode="widthFix"></image>
+  <image wx:elif="{{can_click==false}}" src="../../img/content_buy.png" class="fixed-btn" mode="widthFix"></image> -->
+</view> 
+
+<view wx:if="{{no_sale}}" class="no_sale" bindtap="closeNoTap">
+  <view class="no_sale_sub">
+    <image src="../../img/null_two.png" class="icon-no"></image>
+    <view class="no_sale_notice">该商品已下架</view>
+  </view>
+</view>

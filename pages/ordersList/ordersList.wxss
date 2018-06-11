@@ -1,0 +1,157 @@
+.orders-nav{
+  position:fixed;
+  left:0;top:0;
+  width:100%;height:80rpx;
+  line-height:80rpx;
+  text-align:center;
+  background-color:#fff;
+  color:#999;
+  /* box-shadow:0 0 1rpx #cf2122; */
+}
+.order-nav{
+  width:20%;
+}
+.order-nav.active text{
+  display:inline-block;
+  line-height:76rpx;
+  border-bottom:4rpx solid #ce2121;
+  color:#ce2121;
+}
+
+.orders-list{
+   margin-top:100rpx; 
+}
+.order-item{
+  background-color:#fff;
+  margin-bottom:10px;
+}
+.order-i-header{
+  line-height:96rpx;
+  padding:0 26rpx 0 20rpx;
+  color:#666;
+}
+.cate-icon{
+  width:32rpx;height:32rpx;
+  margin-top:32rpx;
+  margin-right:10rpx;
+}
+.order-i-number{
+  color:#cf2122;
+}
+.order-i-body{
+  background-color:#f0f0f0;
+}
+.order-i-b-item{
+  height:200rpx; 
+  padding:20rpx;
+  border-bottom:1rpx solid #fff;
+}
+.order-i-img{
+  width:160rpx;height:160rpx;
+  margin-right:20rpx;
+}
+.order-i-txt{
+  width:calc(100% - 180rpx);
+}
+.order-i-name{
+  color:#333;
+  font-size:26rpx;
+  line-height:40rpx;
+  margin-top:10rpx;
+}
+.order-i-signs{
+  font-size:24rpx;
+  color:#999;
+  line-height:32rpx;
+}
+.order-i-num{
+  font-size:32rpx;
+  color:#999;
+  text-align:right;
+  line-height:28rpx;
+}
+
+.order-i-footer{
+  background-color:#fff;
+}
+.order-i-f-txt{
+  height:80rpx;
+  line-height:78rpx;
+  color:#666;
+  font-size:26rpx;
+  border-bottom:2rpx solid #e5e5e5;
+  padding:0 20rpx;
+}
+.order-total-box{
+  margin-left:20rpx;
+  line-height:76rpx;
+  height:76rpx;
+}
+.price-icon{
+  font-size:20rpx;
+  color:#333;
+}
+.price-num{
+  display:inline-block;
+  color:#333;
+}
+.int{font-size:30rpx;}
+.float{font-size:24rpx;}
+.order-i-f-btns{
+  height:90rpx;
+  line-height:90rpx;
+  padding:0 20rpx;
+}
+.btn{
+  width:154rpx;
+  text-align:center;
+  height:52rpx;
+  line-height:48rpx;
+  border:2rpx solid #cf2122;
+  color:#cf2122;
+  margin-top:19rpx;
+  font-size:24rpx;
+  margin-left:20rpx;
+}
+.btn-wuliu{
+  color:#999;
+  border-color:#999;
+}
+
+.price_1{
+  color:#999;
+  margin-right:20rpx;
+  font-size:22rpx;
+}
+.price_1:nth-child(2){
+  color:#cf2122;
+}
+.price_1 text{
+  font-size:30rpx;
+  
+}
+
+.refund-att{
+  color:#cf2122;
+}
+.zhanwei{
+  display:inline-block;
+  width:30rpx;
+  height:30rpx;
+}
+
+.no-attention{
+  height:100rpx;
+  line-height:100rpx;
+  text-align:center;
+  color:#999;
+  font-size:24rpx;
+}
+
+.null-img{
+  width:364rpx;
+  height:425rpx;
+  position:absolute;
+  top:0;bottom:0;left:0;right:0;margin:auto;
+  z-index:100;
+}

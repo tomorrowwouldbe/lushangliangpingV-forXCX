@@ -1,0 +1,5 @@
+<view class="auth-cover">
+  <button open-type="getUserInfo" class="auth-btn"  bindgetuserinfo="onGotUserInfo">
+    <open-data type="userAvatarUrl" class="userAvatarUrl"></open-data>
+  </button>
+</view>

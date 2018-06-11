@@ -1,0 +1,6 @@
+<view class="page-joinus">
+  <image lazy-load="true" src="../../img/firm_logo.png" mode="widthFix" class="logo"></image>
+  <view class="f_tel">邀请人：{{tel}}</view>
+  <button wx:if="{{!can_edit}}" class="btn-join">加入我们</button>
+  <button wx:else class="btn-join" bindtap="goVipPage">加入我们</button>
+</view>

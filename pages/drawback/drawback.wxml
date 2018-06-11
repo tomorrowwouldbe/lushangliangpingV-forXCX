@@ -1,0 +1,53 @@
+<view class="page-drawback">
+  <loadingC id="loadingC"/>
+  <view class="column">
+    <block wx:for="{{order.goods}}" wx:for-item="item" wx:key="key">
+      <view class="product-item clearfix">
+        <image lazy-load="true" src="{{item.original_img}}" class="product-img lt"></image>
+        <view class="product-info lt">
+          <view class="product-name text-overflow">{{item.goods_name}}</view>
+          <view class="product-spec text-overflow" style="opacity:{{item.spec_key_name.length>0?'1':'0'}}">{{'('+item.spec_key_name+')'}}</view>
+          <view class="product-num">x{{item.goods_num}}</view>
+          <view class="product-price clearfix">
+            <view wx:if="{{item.is_staff==0}}" class="price lt" style="color:#666">原　价： ¥ <text>{{item.goods_price}}</text></view>
+            <view wx:else class="price lt" style="color:#666">员工价： ¥ <text>{{item.staff_price>0?item.staff_price:item.price}}</text></view>
+            <view wx:if="{{item.member_goods_price>0}}" class="member_price lt">会员价： ¥ <text>{{item.member_goods_price}}</text></view>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <view class="total-products main clearfix">
+      <view class="lt">共 <text>{{product_amount}}</text> 件商品</view>
+      <view class="rt">商品总额： ¥ <!--<text class="price-icon"> ¥ </text>--><text style="color:#333">{{order.total_shop_price}}</text></view>
+    </view>
+  </view>
+
+  <view class="common main clearfix" bindtap="chooseReasons">
+    <text>退款原因</text>
+    <view class="refund-att rt">
+      <text wx:if="{{!reason.length}}">请选择</text>
+      <text wx:else>{{reason}}</text>
+      <image lazy-load="true" src="../../img/arrow-right.png" class="arrow-right"></image>
+    </view>
+  </view>
+
+  <view class="main items">
+    <view class="item clearfix">
+      <text class="lt">返还积分：</text> <text class="rt">{{order.integral_money}}</text>
+    </view>
+    <view class="item clearfix">
+      <text class="lt">返还余额：</text> <text class="rt"> ¥ {{order.user_money}}</text>
+    </view>
+    <view class="item clearfix">
+      <text class="lt">退款金额：</text> <text class="rt"> ¥ {{order.order_amount}}</text>
+    </view>
+  </view>
+  <view class="common main clearfix">
+    <text class="lt">退款说明：</text>
+    <input class="common-input lt" placeholder="选填" placeholder-style="color:#999" bindinput="commentInput"></input>
+  </view>
+  <view wx:if="{{order.goods.length>1}}" class="btn-zhanwei"></view>
+
+  <view class="submit-btn {{order.goods.length>1&&'fixed'}}" bindtap="submitTap">提交</view>
+</view>

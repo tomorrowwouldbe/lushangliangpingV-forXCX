@@ -1,0 +1,21 @@
+<view class="page-merchant">
+  <loadingC id="loadingC"/>
+  <image src="{{image_origin+'BANNER@3x.png'}}" class="m-header"></image>
+  
+  <view class="m-1">
+    <image lowsrc="../../img/../../img/default_business.png" src="{{merchant.head_portrait}}" class="m-1-img"></image>
+    <view class="m-1-name">{{merchant.nickname}}</view>
+  </view>
+
+  <view class="m-2">
+    <block wx:for="{{content}}" wx:for-item="item" wx:key="key">
+      <view class="item">
+        <navigator url="../contentDetails/contentDetails?id={{item.id}}">
+          <image lowsrc="../../img/BannerDefaultpicture@2x@3x.png" src="{{item.title_image_path}}" class="m-2-img" mode="widthFix"></image>
+          <view class="m-2-b text-overflow">{{item.title}}</view>
+          <view class="m-2-n line-2">{{item.content}}</view>
+        </navigator>
+      </view>
+    </block>
+  </view>
+</view>

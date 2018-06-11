@@ -1,0 +1,32 @@
+<view class="page-selfInfor">
+  <view class="self-column">
+    <view class="self-line">
+      <text>昵称</text>
+      <text class="rt">{{lushang_user.member.nickname}}</text>
+    </view>
+    <view class="self-line">
+      <text>性别</text>
+      <text class="rt">{{lushang_user.member.sex==1?'男':lushang_user.member.sex==2?'女':'未知'}}</text>
+    </view>
+  </view>
+
+  <view class="self-column">
+    <view class="self-line">
+      <text>手机号</text>
+      <text class="rt">{{lushang_user.member.mobile}}</text>
+    </view>
+    
+    <view class="self-line">
+      <navigator url="../changePayKey/changePayKey?mobile={{lushang_user.member.mobile}}">
+        <text>更换支付密码</text>
+        <image lazy-load="true" src="../../img/arrow-right.png" class="arrow-right rt"></image>
+      </navigator>
+    </view>
+    
+    <view class="self-line">
+      <text>微信绑定</text>
+      <text class="rt">{{lushang_user.member.nickname}}</text>
+    </view>
+  </view>
+
+</view>

@@ -1,0 +1,82 @@
+.index-swiper{
+  margin-bottom:10px;
+}
+.banner-image{
+  width:100%;
+  height:175px;
+  background:url(http://27shop-dev.oss-cn-beijing.aliyuncs.com/mp_pic/BannerDefaultpicture@2x@3x.png) no-repeat;
+  background-size:100% 100%;
+}
+.index-nav{
+  height:70rpx;
+  line-height:66rpx;
+  background-color:#fff;
+  padding:0 20rpx;
+  font-size:30rpx;
+  color:#999;
+  /* position:absolute;
+  top:370rpx;left:0;
+  width:100%; */
+  margin-bottom:10rpx;
+}
+.zhanwei{
+  height:70rpx;
+  background-color:#f0f0f0;
+  margin-bottom:10rpx;
+  padding:0 20rpx;
+}
+.index-nav.fixed{
+  position:fixed;
+  top:0;left:0;
+  width:100%;
+  box-shadow:0 4rpx 6rpx #ccc;
+  z-index:100000;
+}
+.nav-item{
+  width:50%;
+  text-align:center;
+}
+.nav-item.active{
+  color:#D81818;
+  line-height:66rpx;
+  border-bottom:4rpx solid #D81818;
+}
+
+.product-item{
+  background-color:#fff;
+  padding:20rpx;
+  margin-bottom:20rpx;
+}
+.product-img{
+  width:100%;
+  height:280rpx;
+}
+.product-name{
+  font-size:28rpx;
+  color:#333;
+  margin-top:20rpx;
+  font-weight:bold;
+}
+.product-intro{
+  font-size:24rpx;
+  color:#666;
+  line-height:32rpx;
+  max-height:64rpx;
+}
+.product-merchant{
+  margin-top:36rpx;
+  -webkit-text-size-adjust: none;
+  font-size:22rpx;
+  color:#999;
+}
+.merchant-name{
+  color:#d81818;
+  font-size:26rpx;
+}
+
+.staffbuy{
+  position:absolute;
+  top:0;right:60rpx;
+  z-index:101;
+  width:80rpx;
+}

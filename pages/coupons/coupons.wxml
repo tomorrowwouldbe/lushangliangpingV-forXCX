@@ -1,0 +1,27 @@
+<view class="page-coupons" style="min-height:{{winHeight}}px" bindtouchstart="touchstart" bindtouchend="touchend">
+  <view class="coupons-nav clearfix">
+    <view class="coupon-nav {{navActiveIndex==0&&'active'}} lt" data-index="0" bindtap="navChooseTap"><text>全部</text></view>
+    <view class="coupon-nav {{navActiveIndex==1&&'active'}} lt" data-index="1" bindtap="navChooseTap"><text>未使用</text></view>
+    <view class="coupon-nav {{navActiveIndex==2&&'active'}} lt" data-index="2" bindtap="navChooseTap"><text>已使用</text></view>
+  </view>
+
+  <view wx:if="{{has_coupons}}" class="coupons-items">
+    <block wx:for="{{list_show}}" wx:for-item="item" wx:key="key">
+      <view class="coupon-item {{item.is_use==0&&'canuse'}}">
+        <image wx:if="{{item.is_use==0}}" lazy-load="true" src="../../img/weiuse.png" class="coupon-img"></image>
+        <image wx:elif="{{item.is_use==1}}" lazy-load="true" src="../../img/used_coupon.png" class="coupon-img"></image>
+        <view class="coupon-money">
+          <text class="money-sign"> ¥ </text>
+          <text class="money-num">{{item.money}}</text>
+        </view>
+        <view class="coupon-detail">
+          <view class="coupon-txt">消费 {{item.condition}} 元可用</view>
+          <view class="coupon-time">有效时间：{{item.format_use_start_time}}至{{item.format_use_end_time}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view wx:else class="null-coupons">
+    没有优惠券...
+  </view>
+</view>

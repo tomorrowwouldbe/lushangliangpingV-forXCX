@@ -1,0 +1,126 @@
+.balance_banner{
+  width:100%;
+  height:100%;
+}
+
+.balance-header-box{
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:216rpx;
+}
+.balance-header{
+  position:absolute;
+  left:0;top:0;
+  width:100%;height:100%;
+  padding:40rpx;
+  color:#fff;
+  text-align:center;
+}
+.header-item{
+  width:50%;
+}
+.header-item:nth-child(1){
+  border-right:2rpx solid #eee;
+}
+.header-i-txt{
+  font-size:24rpx;
+  line-height:48rpx;
+}
+.header-i-num{
+  font-size:40rpx;
+  line-height:88rpx;
+}
+
+
+.charge-items{
+  margin-top:216rpx;
+  background-color:#fff;
+}
+.charge-item{
+  height:130rpx;
+  border-bottom:2rpx solid #ECECEC;
+  padding:20rpx;
+}
+.charge-i-left{
+  width:calc(100% - 240rpx);
+}
+.charge-i-right{
+  width:220rpx;
+  line-height:90rpx;
+  font-size:40rpx;
+  text-align:right;
+}
+.charge-add{color:#cf2122;}
+.charge-reduce{color:#666;}
+.charge-i-txt{
+  font-size:30rpx;
+  color:#666;
+  line-height:50rpx;
+}
+.charge-i-time{
+  color:#999;
+  font-size:26rpx;
+  line-height:40rpx;
+}
+
+
+.help-icon{
+  position:absolute;
+  top:20rpx;right:20rpx;
+  width:40rpx;height:40rpx;
+}
+
+
+.help-alert-box{
+  position:fixed;
+  top:0;left:0;z-index:10;
+  background-color:rgba(0,0,0,0.4);
+  width:100%;height:100%;
+}
+.help-alert{
+  position:absolute;
+  top:0;bottom:0;left:0;right:0;
+  margin:auto;height:468rpx;
+  width:90%;
+  max-width:710rpx;
+  background-color:#fff;
+  border-radius:12rpx;
+  text-align:center;
+  padding-top:60rpx;
+  color:#333;
+  font-size:30rpx;
+}
+.help-txt{
+  line-height:30rpx;
+  border-bottom:2rpx solid #EBEBEB;
+  margin-bottom:38rpx;
+  padding-bottom:36rpx;
+}
+.help-txt>view{margin-bottom:30rpx;}
+.help-txt>view:last-child{margin-bottom:0;}
+.close_blance{
+  width:60rpx;height:60rpx;
+  position:absolute;
+  right:0;top:-100rpx;
+}
+
+.btn-column{
+  position:relative;
+}
+.btn-img{
+  width:90%;
+  height:74rpx;
+  margin:0 auto;
+}
+.btn-txt{
+  position:absolute;
+  left:0;top:0;
+  width:100%;
+  text-align:center;
+  height:80rpx;
+  line-height:80rpx;
+  margin:0 auot;
+  margin-bottom:46rpx;
+  color:#fff;
+  font-size:40rpx;
+}

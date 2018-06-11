@@ -1,0 +1,269 @@
+.receipt-infor{
+  height:140rpx;
+  background-color:#fff;
+  margin-bottom:20rpx;
+  padding:20rpx;
+}
+.receipt-address{
+  color:#666;
+  font-size:24rpx;
+  line-height:40rpx;
+}
+
+.addr-icon{
+  width:32rpx;height:32rpx;
+  margin-right:26rpx;
+  margin-top:4rpx;
+}
+.arrow-right{
+  width:60rpx;
+  height:60rpx;
+}
+.addr-arrow{
+  position:absolute;
+  top:40rpx;right:0;
+}
+.price-num{
+  color:#333;
+}
+.receipt-user{
+  line-height:60rpx;
+  color:#333;
+  font-size:30rpx;
+}
+.user-name{
+  margin:0 60rpx;
+}
+.receipt-addr{
+  line-height:40rpx;
+  color:#666;
+  font-size:24rpx;
+}
+
+.canuse-column{
+  background-color:#fff;
+  margin-bottom:20rpx;
+}
+.canuse-line{
+  padding:0 20rpx;
+  height:100rpx;
+  line-height:98rpx;
+  border-bottom:2rpx solid #e5e5e5;
+  font-size:26rpx;
+}
+.canuse-column .canuse-line:last-child{
+  border-bottom:0;
+  line-height:100rpx;
+}
+.canuse-line .arrow-right{
+  margin-top:20rpx;
+}
+.line-txt{
+  color:#333;
+}
+.line-intro{
+  color:#999;
+}
+.canuse-num{
+  font-size:30rpx;
+}
+
+.product-column{
+  background-color:#fff;
+  margin-bottom:20rpx;
+}
+.product-line{
+  padding:20rpx;
+  border-bottom:2rpx solid #e5e5e5;
+}
+.product-img{
+  width:160rpx;
+  height:160rpx;
+  border:2rpx solid #e5e5e5;
+  margin-right:20rpx;
+}
+.product-detail{
+  display:inline-block;
+  width:calc(100% - 180rpx);
+}
+.product-total{
+  line-height:100rpx;
+  text-align:right;
+  padding:0 20rpx;
+  color:#666;
+}
+.price-1{
+  color:#cf2122;
+}
+.price-2{
+  color:#999;
+  font-size:24rpx;
+}
+.order-num{
+  text-align:right;
+  color:#999;
+
+}
+.product-name{
+  color:#333;
+  /* line-height:40rpx; */
+  margin-top:8rpx;
+  font-size:28rpx;
+}
+.product-signs{
+  color:#999;
+  /* line-height:28rpx; */
+  font-size:24rpx;
+}
+.product-number{
+  color:#999;
+  font-size:24rpx;
+  line-height:34rpx;
+}
+.product-num{
+   /* margin-right:20rpx;  */
+}
+.zhanwei{
+  display:inline-block;
+  width:32rpx;
+  height:20rpx;
+}
+.price,.staff_price,.member_price{
+  margin-right:20rpx;
+  font-size:22rpx;
+}
+.member_price{
+  color:#cf2122;
+}
+.price text,.staff_price text,.member_price text{
+  font-size:30rpx;
+}
+.used-column{
+  background-color:#fff;
+  margin-bottom:20rpx;
+  font-size:26rpx;
+  color:#333;
+}
+.used-line{
+  padding:0 20rpx;
+  height:100rpx;
+  line-height:100rpx;
+}
+.used-column .used-line:last-child{
+  border-top:2rpx solid #e5e5e5;
+}
+.used-right{
+  color:#cf2122;
+}
+.free-post{
+  color:#cf2122;
+  border:2rpx solid #cf2122;
+  margin-right:40rpx;
+  padding:0 20rpx;
+  height:50rpx;
+  line-height:46rpx;
+  margin-top:25rpx;
+  font-size:26px;
+}
+
+
+.order-infor-column{
+  background-color:#fff;
+  font-size:26rpx;
+  color:#333;
+}
+.order-infor-line{
+  padding:0 20rpx;
+  height:100rpx;
+  line-height:98rpx;
+  border-bottom:2rpx solid #e5e5e5;
+}
+.order-infor-line text{
+  color:#999;
+}
+
+.drawback-btn{
+  padding:0 20rpx;
+  height:60rpx;
+  line-height:56rpx;
+  border:2rpx solid #ccc;
+  color:#666;
+  margin-top:20rpx;
+}
+.drawback-btn.disabled{
+  color:#999;
+}
+.order-status{
+  padding:0 20rpx;
+  height:60rpx;
+  line-height:56rpx;
+  color:#cf2122;
+  margin-top:20rpx;
+}
+
+.fixed-bottom-column{
+  position:fixed;
+  left:0;bottom:0;
+  width:100%;
+  /* background-color:#fff;
+  border-top:2rpx solid #ccc; */
+  background-color:transparent;
+}
+.go-pay{
+  width:90%;
+  height:80rpx;
+  line-height:80rpx;
+  margin:18rpx auto;
+  border-radius:8rpx;
+}
+
+.icon-time{
+  width:40rpx;
+  height:40rpx;
+  margin-top:22rpx;
+  margin-right:10rpx;
+}
+.product-header{
+  height:80rpx;
+  line-height:78rpx;
+  border-bottom:2rpx solid #e5e5e5;
+  padding:0 20rpx;
+  font-size:30rpx;
+  color:#666;
+}
+.cate-icon{
+  width:32rpx;height:32rpx;
+  margin-top:24rpx;
+  margin-right:10rpx;
+}
+
+.confirm-btn{
+  padding:0rpx 20rpx;
+  border-radius:30rpx;
+  border:2rpx solid #cf2122;
+  color:#cf2122 !important;
+  height:60rpx;
+  line-height:56rpx;
+  margin-top:20rpx;
+  margin-left:40rpx;
+}
+.contact-btn{
+  padding:0rpx 20rpx;
+  border-radius:30rpx;
+  border:2rpx solid #999;
+  color:#999;
+  height:60rpx;
+  line-height:56rpx;
+  margin-top:20rpx;
+  position:relative;
+  margin-left:40rpx;
+}
+
+.hidden-btn{
+  position:absolute;
+  opacity:0;
+  /* left:0;top:0;
+  width:100%;height:100%;
+  z-index:100;
+  opacity:0; */
+}

@@ -1,0 +1,119 @@
+page{
+  color:#666;
+}
+.product-item{
+  background-color:#fff;
+  padding:20rpx;
+  border-bottom:2rpx solid #e5e5e5;
+}
+.product-img{
+  width:160rpx;
+  height:160rpx;
+  margin-right:20rpx;
+  background-color:#eee;
+}
+.main{
+  padding:0 20rpx;
+  background-color:#fff;
+}
+.total-products{
+  height:80rpx;
+  line-height:80rpx;
+}
+.common{
+  margin-top:20rpx;
+  height:100rpx;
+  line-height:100rpx;
+  color:#333;
+  font-size:26rpx;
+}
+.arrow-right{
+  width:40rpx;
+  height:40rpx;
+  margin-top:30rpx;
+}
+.common-input{
+  margin-top:20rpx;
+  height:60rpx;
+  line-height:60rpx;
+  width:500rpx;
+  padding:0 20rpx;
+}
+
+.submit-btn{
+  width:90%;
+  text-align: center;
+  height:78rpx;
+  line-height:78rpx;
+  margin:96rpx auto;
+  border-radius:8rpx;
+  background-color:#d64b4d;
+  font-size:28rpx;
+  color:#fff;
+  
+}
+.fixed{
+  position:fixed;
+  left:0;right:0;bottom:50rpx;z-index:100;
+  margin:0 auto;
+}
+
+.product-name{
+  font-size:28rpx;
+  color:#333;
+  margin-top:10rpx;
+}
+.product-spec{
+  font-size:26rpx;
+  color:#999;
+}
+.product-info{
+  width:calc(100% - 180rpx);
+}
+.product-num{
+  text-align:right;
+  color:#999;
+}
+.zhanwei{
+  display:inline-block;
+  width:32rpx;
+  height:20rpx;
+}
+.product-price{
+  color:#999;
+  font-size:24rpx;
+}
+.price:nth-child(1){
+  margin-right:68rpx;
+}
+.member_price{
+  font-size:24rpx;
+  color:#cf2122;
+}
+.price:nth-child(1) text,.member_price text{
+  font-size:30rpx;
+}
+
+.refund-att{
+  color:#999;
+  font-size:28rpx;
+}
+.item text.rt{
+  color:#cf2122;
+  font-size:30rpx;
+}
+
+.items{
+  margin-top:20rpx;
+  padding:20rpx 20rpx;
+  color:#333;
+}
+.item:nth-child(2){
+  margin:70rpx 0;
+}
+
+
+.btn-zhanwei{
+  height:178rpx;
+  opacity:0;
+}

@@ -1,0 +1,82 @@
+<view class="page-cate">
+  <loadingC id="loadingC"/> 
+   <cover id="cover" bindtap="setting"/>  
+  <!-- banner图 -->
+  <view wx:if="{{banner.length==1}}" style="height:140px;margin-bottom:10px;">
+    <navigator wx:if="{{banner[0].goods_id.length>0}}" url="../productDetail/productDetail?goods_id={{banner[0].goods_id}}">
+      <image src="{{banner[0].ad_img_url}}" class="banner-image"/>
+    </navigator>
+    <image wx:else src="{{banner[0].ad_img_url}}" class="banner-image"/>
+  </view>
+  <swiper wx:if="{{banner.length>1}}" style="height:140px;margin-bottom:10px;" indicator-dots="{{indicatorDots}}" circular="{{circular}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{banner}}" wx:for-item="item" wx:key="key">
+      <navigator wx:if="{{item.goods_id.length>0}}" url="../productDetail/productDetail?goods_id={{item.goods_id}}">
+        <swiper-item>
+          <image data-index="{{index}}" src="{{item.ad_img_url||'../../img/BannerDefaultpicture@2x@3x.png'}}" class="slide-image"/>
+        </swiper-item>
+      </navigator>
+      <swiper-item wx:else>
+        <image data-index="{{index}}" src="{{item.ad_img_url||'../../img/BannerDefaultpicture@2x@3x.png'}}" class="slide-image"/>
+      </swiper-item>
+    </block>
+  </swiper>
+  <!-- 正文 -->
+  <view wx:if="{{leftArr.length>0}}" class="cate-lists clearfix">
+    <!-- 左侧列表 -->
+    <scroll-view class="cate-left-list lt" scroll-y style="height:{{winHeight-150}}px;" scroll-top="{{left_scrollTop}}">
+      <block wx:for="{{leftArr}}" wx:for-item="item" wx:key="key">
+        <!-- 一级菜单 -->
+        <view wx:if="{{item.children||item.id=='static'}}" class="left-item {{item.isActive&&'active'}}" bindtap="firstLevelTap" data-index="{{index}}" data-id="{{item.id}}" data-name="{{item.mobile_name}}">
+          <!-- 一级菜单名称 -->
+          <view class="left-item-txt">{{item.mobile_name}}</view>
+          <!-- 二级菜单 -->
+          <!-- <view wx:if="{{item.id!='static'&&item.children[0].children&&item.children.length&&item.subShow}}" class="left-item-subbox"> -->
+          <view wx:if="{{item.id!='static'&&item.children.length&&item.subShow}}" class="left-item-subbox">
+            <block wx:for="{{item.children}}" wx:for-item="subItem" wx:for-index="idx" wx:key="subKey">
+              <view wx:if="{{subItem.children}}" class="left-subitem text-overflow {{subItem.isActive&&'active'}}" data-id="{{subItem.id}}" data-name="{{subItem.mobile_name}}" data-index="{{idx}}" data-parentidx="{{index}}" catchtap="secondLevelTap" id="leftItem">
+                <text class="subitem-sign"></text>
+                <text>{{subItem.mobile_name}}</text>
+              </view>
+            </block>
+          </view>
+        </view>
+      </block>
+    </scroll-view>
+    <!-- 右侧列表 -->
+    <scroll-view class="cate-right-list lt" scroll-with-animation="true" scroll-y style="height:{{winHeight-150}}px;" scroll-top="{{rScrollTop}}" bindscroll="rightScroll">
+      <block wx:for="{{rightArr}}" wx:for-item="item" wx:key="key">
+        <view wx:if="{{item.children.length}}">
+        <view class="right-item">
+            <!-- 分类名称 -->
+            <!-- <view class="right-item-heder">{{item.mobile_name=='推荐产品'?'重点推荐':item.mobile_name}}</view> -->
+            <view class="right-item-header">
+              <text>{{item.mobile_name=='推荐产品'?'重点推荐':item.mobile_name}}</text>
+              <view class="header-line"></view>
+            </view>
+            <!-- 分类列表 -->
+            <view class="right-item-box clearfix">
+              <block wx:for="{{item.children}}" wx:for-index="subIndex" wx:for-item="subItem" wx:key="subKey">
+                <!-- 单个产品 -->
+                <view class="right-product" id="mjltest">
+                  <navigator url="../productDetail/productDetail?goods_id={{subItem.goods_id}}" style="height:100%;">
+                    <image wx:if="{{subIndex==0}}" bindload="productLoaded" lazy-load="true" src="{{subItem.original_img||'../../img/cate_pro_default.png'}}" class="product-img"></image>
+                    <image wx:else lazy-load="true" src="{{subItem.original_img||'../../img/cate_pro_default.png'}}" class="product-img"></image>
+                    <view class="product-detail">
+                      <view class="product-name text-overflow">{{(subItem.short_title.length==0||subItem.short_title==0)?subItem.goods_name:subItem.short_title}}</view>
+                      
+                      <view class="line_1 line">原　价 ¥ <text>{{subItem.price}}</text></view>
+                      <view style="opacity:{{subItem.member_goods_price>0?'1':'0'}}" class="line_2 line">会员价 ¥ <text>{{subItem.member_goods_price}}</text></view>
+                      <view class="line_3 line">
+                        <view>送积分 <text>{{subItem.points}}</text></view>
+                      </view>
+                    </view>
+                  </navigator>
+                </view>
+              </block>
+            </view>
+        </view>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+</view>

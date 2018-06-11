@@ -1,0 +1,160 @@
+<wxs module="filters" src="../../addmul.wxs"></wxs>
+<view class="page-submitOrder">
+  <loadingC id="loadingC"/>
+  <view class="receipt-infor">
+    <view class="receipt-user">
+      <text class="user-name">{{order.consignee}}</text>
+      <text class="user-tel">{{order.mobile}}</text>
+    </view>
+    <view class="receipt-address text-overflow">
+      <image src="../../img/location_new.png" class="addr-icon"></image>
+      <text>{{order.province_name+order.city_name+order.district_name+order.detail_address}}</text>
+    </view>
+  </view>
+
+
+  <view class="product-column">
+    <view class="product-header clearfix">
+      <image wx:if="{{order.status_code==1||order.status_code==5||item.status_code==6}}" src="../../img/waiting_pay.png" mode="widthFix" class="cate-icon lt"></image>
+      <image wx:elif="{{order.status_code==2}}" src="../../img/waiting_fahuo.png"  lowsrc="../../img/cate_pro_default.png" mode="widthFix" class="cate-icon lt"></image>
+      <image wx:elif="{{order.status_code==3}}" src="../../img/waiting_shouhuo.png" mode="widthFix" class="cate-icon lt"></image>
+      <image wx:elif="{{order.status_code==4}}" src="../../img/waiting_finished.png" mode="widthFix" class="cate-icon lt"></image>
+      <image wx:elif="{{order.status_code==7||order.status_code==8}}" src="../../img/Refunded@3x.png" mode="widthFix" class="cate-icon lt" style="margin-top:26rpx;"></image>
+      <text class="lt">{{status_str}}订单</text>
+    </view>
+    <block wx:for="{{order.goods}}" wx:for-item="item" wx:key="key">
+      <view wx:if="{{jump_click}}" class="product-line" data-id="{{item.goods_id}}" bindtap="jump">
+        <image src="{{item.original_img}}" class="product-img"></image>
+        <view class="product-detail">
+          <view class="product-name text-overflow">{{item.goods_name}}</view>
+          <view class="product-signs text-overflow" style="opacity:{{item.spec_key_name.length==0?'0':'1'}}">{{'('+item.spec_key_name+')'}}</view>
+          <view class="order-num">X{{item.goods_num}}</view>
+          <view class="product-number clearfix">
+            <view wx:if="{{item.is_staff==0}}" class="price lt">原　价： ¥ <text>{{item.goods_price}}</text></view>
+            <view wx:else class="staff_price lt">员工价： ¥ <text>{{item.staff_price>0?item.staff_price:item.price}}</text></view>
+            <view wx:if="{{item.member_goods_price>0}}" class="member_price lt">会员价： ¥ <text>{{item.member_goods_price}}</text></view>
+          </view>
+        </view>
+      </view>
+      <view wx:else class="product-line">
+        <image lowsrc="../../img/cate_pro_default.png" src="{{item.original_img}}" class="product-img"></image>
+        <view class="product-detail">
+          <view class="product-name text-overflow">{{item.goods_name}}</view>
+          <view class="product-signs text-overflow" style="opacity:{{item.spec_key_name.length==0?'0':'1'}}">（{{item.spec_key_name}}）</view>
+          <view class="order-num">X{{item.goods_num}}</view>
+          <view class="product-number clearfix">
+            <view wx:if="{{item.is_staff==0}}" class="price lt" style="color:#666">原　价： ¥ <text>{{item.goods_price}}</text></view>
+            <view wx:else class="staff_price lt" style="color:#666">员工价：  ¥ <text>{{item.staff_price>0?item.staff_price:item.price}}</text></view>
+            <view wx:if="{{item.member_goods_price>0}}" class="member_price lt">会员价： ¥ <text>{{item.member_goods_price}}</text></view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <view class="product-total clearfix">
+      <view class="product-num lt" style="margin-right:20rpx;">共 {{product_amount}} 件商品</view>
+      <view class="lt">
+        商品总额： ¥ <!--<text class="price-icon"> ¥ </text>--><text class="price-num">{{order.total_shop_price}}</text>
+      </view>
+      <text wx:if="{{status_code==2&&refund_status==true||status_code==3&&refund_status==true}}" class="drawback-btn disabled rt" data-id="{{order.order_id}}" bindtap="drawbackTap">退款申请</text>
+      <text wx:if="{{status_code==2&&refund_status==false||status_code==3&&refund_status==false}}" class="drawback-btn disabled rt" data-id="{{order.order_id}}">退款申请</text>
+
+      <text wx:elif="{{status_code==1&&cancel_status==true&&show}}" class="drawback-btn rt" bindtap="is_cancelTap">取消订单</text>
+      <text wx:elif="{{status_code==1&&cancel_status==false&&show}}" class="drawback-btn disabled rt">取消订单</text>
+      <text wx:elif="{{status_code==1&&!show}}" class="order-status rt">已取消</text>
+    </view>
+  </view>
+
+  <view class="used-column">
+    <view class="used-line">
+      <text>会员优惠</text>
+      <view class="used-right rt">
+        <text class="product-num">-</text>
+        <text class="product-sign"> ¥ </text>
+        <text class="product-num">{{filters.toFix(order.total_shop_price -order.goods_price)}}</text>
+      </view>
+    </view>
+    <view class="used-line">
+      <text>积分抵扣</text>
+      <view class="used-right rt">
+        <text class="product-num">-</text>
+        <text class="product-sign"> ¥ </text>
+        <text class="product-num">{{order.integral_money}}</text>
+      </view>
+    </view>
+    <view class="used-line">
+      <text>余额抵扣</text>
+      <view class="used-right rt">
+        <text class="product-num">-</text>
+        <text class="product-sign"> ¥ </text>
+        <text class="product-num">{{order.user_money}}</text>
+      </view>
+    </view>
+    <view class="used-line">
+      <text>优惠券优惠</text>
+      <view class="used-right rt">
+        <text class="product-num">-</text>
+        <text class="product-sign"> ¥ </text>
+        <text class="product-num">{{order.coupon_price}}</text>
+      </view>
+    </view>
+    <view class="used-line">
+      <text>运费</text>
+      <view class="used-right rt">
+        <text class="product-sign"> ¥ </text>
+        <text class="product-num">{{order.shipping_price}}</text>
+      </view>
+    </view>
+    <view class="used-line clearfix" style="color:#cf2122">
+      <view class="lt">
+        <text>已优惠：</text>
+        <view class="used-right rt">
+          <text class="product-sign"> ¥ </text>
+          <text class="product-num">{{order.total_coupon}}</text>
+        </view>
+      </view>
+      <text class="rt" >实付款： ¥ {{order.order_amount}}</text>
+    </view>
+  </view>
+
+  <view class="order-infor-column">
+    <view class="order-infor-line">
+      订单编号  <text selectable="true" class="rt">{{order.order_sn}}</text>
+    </view>
+    <view class="order-infor-line">
+      下单时间  <text class="rt">{{order.format_add_time}}</text>
+    </view>
+    <view class="order-infor-line">
+      付款方式  <text class="rt">{{order.pay_name}}</text>
+    </view>
+    <view wx:if="{{status_code==3||status_code==4}}" class="order-infor-line">
+      物流公司  <text class="rt">{{order.shipping_name}}</text>
+    </view>
+    <view wx:if="{{status_code==3||status_code==4}}" class="order-infor-line">
+      物流单号  <text selectable="true" class="rt">{{order.invoice_no}}</text>
+    </view>
+    <view wx:if="{{status_code==3}}" class="order-infor-line clearfix">
+      <text class="confirm-btn rt" bindtap="confirmGet">确认收货</text>
+      <text class="contact-btn rt" bindtap="lookTransfer">查看物流</text>
+      <view class="contact-btn rt">
+        <text>联系客服</text>
+        <contact-button class="hidden-btn" type="default-light" size="40" style="left:0;" session-from="webapp"></contact-button>
+        <contact-button class="hidden-btn" type="default-light" size="40" style="left:34%;" session-from="webapp"></contact-button>
+        <contact-button class="hidden-btn" type="default-light" size="40" style="left:67%;" session-from="webapp"></contact-button>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{status_code==1}}" style="height:110rpx;"></view>
+
+
+  <view class="fixed-bottom-column">
+    <button wx:if="{{status_code==1&&pay_click==true&&show}}" type="warn" class="go-pay" bindtap="pay">去支付（<image src="../../img/time.png" class="icon-time"></image><text>{{remain_time.m+' : '+remain_time.s}}</text>）</button>
+    <button wx:if="{{status_code==1&&pay_click==false&&show}}" disabled type="warn" class="go-pay">去支付（<image src="../../img/time.png" class="icon-time"></image><text>{{remain_time.m+' : '+remain_time.s}}</text>）</button>
+  </view>
+  
+  <view wx:if="{{no_sale}}" class="no_sale" bindtap="closeNoTap">
+    <view class="no_sale_sub">
+      <image src="../../img/null_two.png" class="icon-no"></image>
+      <view class="no_sale_notice">该商品已下架</view>
+    </view>
+  </view>
+</view>

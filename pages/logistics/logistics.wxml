@@ -1,0 +1,94 @@
+<view class="page-logistics">
+  <loadingC id="loadingC"/>
+  <view class="logistics-header clearfix">
+    <view class="header-left lt">
+      <swiper class="product-img" indicator-dots="{{indicatorDots}}"
+  autoplay="{{autoplay}}" interval="{{interval}}" circular="{{circular}}" duration="{{duration}}">
+        <block wx:for="{{imgUrls}}" wx:for-item="item" wx:key="key">
+          <swiper-item>
+            <image src="{{item}}" class="slide-image" width="355" height="150"/>
+          </swiper-item>
+        </block>
+      </swiper>
+      <view class="header-num">共{{total_num}}件</view>
+    </view>
+    <view class="header-right lt">
+      <view class="header-line">
+        物流来源： <text>{{obj.shipping_name}}</text>
+      </view>
+      <view class="header-line">
+        运单编号： <text selectable="true">{{obj.invoice_no}}</text>
+      </view>
+      <view class="header-line">
+        官方电话： <text selectable="true" bindtap="makeCall">{{obj.shipping_phone}}</text>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{false}}" class="delivery_staff clearfix">
+    <image src="../../img/mine@2x.png" class="delivery_s-img lt"></image>
+    <view class="delivery_s-txt lt">
+      <view>派件员</view>
+      <view class="delivery_s-name">廉成海</view>
+    </view>
+    <image src="../../img/arrow-right.png" class="arrow-right rt"></image>
+    <image src="../../img/5@2x_1.png" mode="widthFix" class="icon-phone rt"></image>
+  </view>
+
+   <view wx:if="{{express.length==0}}" class="logistics">
+    暂无物流跟踪信息，请联系客服
+  </view>
+  <view wx:else class="logistics-body">
+    <block wx:for="{{express}}" wx:for-index="index" wx:key="key">
+      <view class="body-line">
+        <view class="line-header">
+          <view class="line-sign"><text class="circle-sign"></text></view>
+          <image class="icon-circle {{index==0&&'active'}}" src="../../img/{{index==0?'6@2x.png':'6@2x_1.png'}}"></image>
+          <text class="line-txt rt">{{item.context}}</text>
+        </view>
+        <view class="line-footer">{{item.ftime}}</view>
+        <view wx:if="{{index<express.length-1}}" class="vertical-line"></view>
+      </view>
+    </block>
+  </view>  
+   <!-- <view class="logistics-body">
+    <view class="body-line">
+      <view class="line-header">
+        <image class="icon-circle active" src="../../img/6@2x.png"></image>
+        <text class="line-txt rt">您的货已经送至北京通州集散中心，派送人是：董某某，手机号：13261394996</text>
+      </view>
+      <view class="line-footer">2017-12-11 12:03:44</view>
+      <view class="vertical-line"></view>
+    </view>
+    <view class="body-line">
+      <view class="line-header">
+        <image class="icon-circle" src="../../img/Has passed@2x.png"></image>
+        <text class="line-txt rt">您的货即将由东莞运送中心送至北京通州集散中心</text>
+      </view>
+      <view class="line-footer">2017-12-11 12:03:44</view>
+      <view class="vertical-line"></view>
+    </view>
+    <view class="body-line">
+      <view class="line-header">
+        <image class="icon-circle" src="../../img/Has passed@2x.png"></image>
+        <text class="line-txt rt">您的货即将由东莞运送中心送至北京通州集散中心</text>
+      </view>
+      <view class="line-footer">2017-12-11 12:03:44</view>
+      <view class="vertical-line"></view>
+    </view>
+    <view class="body-line">
+      <view class="line-header">
+        <image class="icon-circle" src="../../img/Has passed@2x.png"></image>
+        <text class="line-txt rt">您的货即将由东莞运送中心送至北京通州集散中心</text>
+      </view>
+      <view class="line-footer">2017-12-11 12:03:44</view>
+      <view class="vertical-line"></view>
+    </view>
+    <view class="body-line">
+      <view class="line-header">
+        <image class="icon-circle" src="../../img/Has passed@2x.png"></image>
+        <text class="line-txt rt">您的货已被打包送至广东东莞某物流公司</text>
+      </view>
+      <view class="line-footer">2017-12-11 12:03:44</view>
+    </view>
+  </view>  -->
+</view>

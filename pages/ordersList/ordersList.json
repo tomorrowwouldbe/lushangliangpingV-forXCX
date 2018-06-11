@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "订单列表",
+  "usingComponents": {
+    "loadingC": "/components/loadingCircle/loading"
+  },
+  "enablePullDownRefresh":true
+}

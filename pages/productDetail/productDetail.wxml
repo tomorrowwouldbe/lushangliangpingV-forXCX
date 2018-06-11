@@ -1,0 +1,272 @@
+<import src="../../wxParse/wxParse.wxml"/>
+<cover id="cover" bindtap="setting"/>
+<loadingC id="loadingC"/>
+<!-- <view class="page-producctDetail" style="{{(!rightsShow||!choices_hidden)&&'height:'+(winHeight-50)+'px;overflow:hidden;'}}"> -->
+<view class="page-producctDetail {{no_support_show&&'pd-80'}}">
+  
+  <view class="product-swiper">
+    <!-- 轮播图 -->
+    <swiper indicator-dots="{{indicatorDots}}" circular="{{circular}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" bindchange="swiperChange">
+      <block wx:for="{{product.images}}" wx:for-index="index" wx:for-item="item" wx:key="key">
+        <swiper-item>
+          <image hidden="{{item.banner_show}}" lazy-load="true" src="{{item.image_url+'?x-oss-process=image/resize,w_100,limit_0'}}" class="swiper-image" data-src="{{item.image_url}}" mode="widthFix" bindtap="preview"/>
+          <image hidden="{{!item.banner_show}}" lazy-load="true" src="{{item.image_url}}" data-src="{{item.image_url}}" data-index="{{index}}" class="swiper-image" mode="widthFix" bindload="bannerLoad" bindtap="preview"/>
+        </swiper-item>
+      </block>
+    </swiper>
+    <!-- 轮播图当前页面 -->
+    <view class="img-index">{{currentIndex+'/'+(product.images.length?product.images.length:'1')}}</view>
+  </view>
+  <!-- 回到首页 -->
+  <view class="backToIndex" bindtap="backToIndexTap">
+    <image src="../../img/home.png" class="home-icon"></image>
+  </view>
+
+  <view class="product-txt">
+    <view class="product-txt-left">
+      <image src="../../img/logo.png" class="firm-logo" mode="widthFix"></image>
+      <!-- 商品名称 -->
+      <text selectable="true" class="product-name" data-text="{{product.goods_name}}" bindtap="copyTap">{{product.goods_name}}</text>
+    </view>
+    <view class="product-price clearfix">
+      <view wx:if="{{product.is_staff==0}}" class="line_1 lt" style="color:#666">
+        <image wx:if="{{chooseProduct.member_goods_price>0}}" src="../../img/VIP@3x.png" class="vip-logo lt" mode="widthFix" style="opacity:0"></image>
+        原　价： ¥ <text class="font-2">{{chooseProduct.price}}</text>
+      </view>
+      <view wx:else class="line_1 lt" style="color:#666">
+        <image wx:if="{{chooseProduct.member_goods_price>0}}" src="../../img/VIP@3x.png" class="vip-logo lt" mode="widthFix" style="opacity:0"></image>
+        员工价： ¥ <text class="font-2">{{chooseProduct.staff_price>0?chooseProduct.staff_price:chooseProduct.price}}</text>
+      </view>
+      <view class="line_1 lt">送积分：<text class="font-2" style="font-size:30rpx">{{chooseProduct.points}}</text></view>
+    </view> 
+    <view wx:if="{{chooseProduct.member_goods_price>0}}" class="line_1" style="margin-top:20rpx;color:#cf2122;">
+      <image src="../../img/VIP@3x.png" class="vip-logo lt" mode="widthFix"></image>
+      会员价： ¥ <text class="font-1">{{chooseProduct.member_goods_price}}</text>
+    </view>
+    <view wx:if="{{!is_member}}" class="vip-attention clearfix" bindtap="goVipPage">
+      <text class="lt text-overflow">升级成为会员享受路上良品更多优惠特权，点击加入我们吧！</text>
+       <!-- <image src="../../img/Arrow@3x.png" mode="widthFix" class="arrow rt"></image>  -->
+      <image src="../../img/arrow-right.png" class="arrow-1 rt"></image>
+    </view>
+  </view>
+
+  <!-- column:规格数量选择 -->
+  <view class="product-choices clearfix" style="margin-bottom:0;border-bottom:1px solid #e5e5e5;" bindtap="showChoicesAlert">
+    <text class="choices-txt lt">规格数量</text>
+    <image src="../../img/arrow-right.png" class="arrow-right rt"></image>
+  </view>
+
+  <!-- 权益 -->
+  <view class="product-choices clearfix" bindtap="showRightsAlert" style="margin-bottom:0;border-bottom:1px solid #e5e5e5;">
+    <text class="choices-txt lt">权　　益：</text>
+    <image src="../../img/Dot@3x.png" class="icon-dot lt"></image>
+    <text class="choices-txt lt">会员权益</text>
+    <image src="../../img/Dot@3x.png" class="icon-dot lt"></image>
+    <text class="choices-txt lt">积分权益</text>
+    <image src="../../img/arrow-right.png" class="arrow-right rt"></image>
+  </view>
+
+  <!-- 配送区域 -->
+  <view class="product-choices clearfix" data-item="{{static_address}}" bindtap="chooseAddress">
+    <text class="choices-txt lt">配送区域：</text>
+    <text class="delivery-area lt">{{delivery_area}}</text>
+    <image src="../../img/arrow-right.png" class="arrow-right rt"></image>
+  </view>
+
+  <!-- 当前区域不支持配送 -->
+  <view wx:if="{{no_support_show&&!first_enter}}" class="Not-support">当前区域不支持配送</view>
+
+  <view wx:if="{{showAddress}}" class="address-alert clearfix" bindtap="cancelAddress">
+    <view class="address-subalert" animation="{{animationData3}}" catchtap="openAddress">
+      <view class="address-header">
+        <text class="confirm-btn lt" catchtap="cancelAddress">取消</text>
+        <text class="confirm-btn rt" catchtap="confirmAddress">确定</text>
+      </view>
+      <picker-view indicator-style="height: 50px;" style="width: 100%; height: 250px;" value="{{value}}" bindchange="bindChange">
+        <picker-view-column>
+          <view wx:for="{{province}}" wx:for-item="item" wx:key="key" style="line-height: 50px;text-align:center;"><text data-id="{{item.area_code}}">{{item.area_name}}</text></view>
+        </picker-view-column>
+        <picker-view-column>
+          <view wx:for="{{city}}" wx:for-item="item" wx:key="key" style="line-height: 50px;text-align:center;">{{item.area_name}}</view>
+        </picker-view-column>
+        <picker-view-column>
+          <view wx:for="{{area}}" wx:for-item="item" wx:key="key" style="line-height: 50px;text-align:center;">{{item.area_name}}</view>
+        </picker-view-column>
+      </picker-view>
+    </view>
+  </view>
+
+  <!-- column:商品介绍 -->
+  <view class="product-intro">
+    <template is="wxParse" data="{{wxParseData:article1.nodes}}"/>
+  </view>
+
+  <!-- 弹窗：规格数量选择 -->
+  <view hidden="{{choices_hidden}}" class="choices-alert" bindtap="closeChoicesAlert">
+    <view class="choices-subalert" catchtap="openChoicesAlert">
+      <!-- icon:X -->
+      <image src="../../img/close-icon.png" class="close-icon" catchtap="closeChoicesAlert"></image>
+      <view class="subalert-box" animation="{{animationData}}">
+        <view class="product-summary clearfix">
+          <image src="{{chooseProduct.spec_image_path.length==0?product.original_img:chooseProduct.spec_image_path}}" class="product-s-img lt"></image>
+          <view class="product_a-infor lt" style="margin-top:{{has_spec?'70rpx':'110rpx'}}">
+            <view class="product-price clearfix">
+              <view wx:if="{{product.is_staff==0}}" class="price lt" style="color:#666;margin-right:20rpx;">
+                原　价: ¥ <text>{{chooseProduct.price}}</text>
+              </view>
+              <view wx:else class="price lt" style="color:#666;margin-right:20rpx;">
+                员工价: ¥ <text>{{chooseProduct.staff_price>0?chooseProduct.staff_price:chooseProduct.price}}</text> 
+              </view>
+              <view wx:if="{{chooseProduct.member_goods_price>0}}" class="member_price lt">
+                会员价: ¥ <text>{{chooseProduct.member_goods_price}}</text>
+              </view>
+            </view>
+            <view wx:if="{{has_spec}}" class="header-text">请选择规格属性</view>
+          </view>
+        </view>
+        
+        <scroll-view wx:if="{{product.spec.spec.length==undefined}}" scroll-y style="height:270px;">
+          <view class="spec-box"> 
+            <!-- 规格遍历 -->
+            <block wx:for="{{product.spec.spec}}" wx:for-item="item" wx:for-index="index" wx:key="key">
+              <view class="product-s-title" data-title="{{index}}">{{item.name}}</view>
+              <view wx:if="{{item.children.length}}" class="choose-items" data-title="{{index}}">
+                <block wx:for="{{item.children}}" wx:for-item="subItem" wx:key="subKey" wx:for-index="idx">
+                  <text class="btn choose-item {{activeIndex[index]==subItem.id&&'active'}}" catchtap="chooseSpec" data-parent="{{index}}" data-index="{{idx}}" data-id="{{subItem.id}}">{{subItem.item}}</text>
+                </block>
+              </view>
+            </block>
+          </view> 
+          <!-- 选择数量 -->
+          <view class="product-s-title" style="margin-top:{{product.spec.spec.length!=undefined&&'30rpx'}}">数量</view>
+          <view class="product-s-calc clearfix">
+            <text wx:if="{{product_num<=1}}" class="reduce-icon calc-item disabled lt">-</text> 
+            <text wx:else class="btn reduce-icon calc-item lt" bindtap="reduceTap">-</text>
+            <text class="calc-value calc-item lt">{{product_num}}</text>
+            <!-- <text wx:if="{{product_num>=chooseProduct.store_count}}" class="add-icon calc-item disabled lt">+</text>       -->
+            <text class="btn add-icon calc-item lt" bindtap="addTap">+</text>
+          </view>
+        </scroll-view>
+        <view wx:else>
+          <!-- 选择数量 -->
+          <view class="product-s-title" style="margin-top:{{product.spec.spec.length!=undefined&&'30rpx'}}">数量</view>
+          <view class="product-s-calc clearfix">
+            <text wx:if="{{product_num<=1}}" class="reduce-icon calc-item disabled lt">-</text> 
+            <text wx:else class="btn reduce-icon calc-item lt" bindtap="reduceTap">-</text>
+            <text class="calc-value calc-item lt">{{product_num}}</text>
+            <!-- <text wx:if="{{product_num>=chooseProduct.store_count}}" class="add-icon calc-item disabled lt">+</text>       -->
+            <text class="btn add-icon calc-item lt" bindtap="addTap">+</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 权益说明弹窗 -->
+  <view hidden="{{rightsShow}}" class="rights-alert" bindtap="closeRightsTap">
+    <view class="rights" animation="{{animationData1}}" catchtap="openRightsTap">
+      <view class="rights-header">权益</view>
+      <image src="../../img/close@3x.png" class="rights-close icon" catchtap="closeRightsTap"></image>
+      <view class="rights-body">
+        <view class="rights-c">
+          <view class="rights-c-header">
+            <image src="../../img/spot@3x.png" class="rights-dot icon"></image>
+            <text>会员权益</text>
+          </view>
+          <view class="rights-c-body">
+            <view class="rights-c-item">1.1积分抵扣1元钱；</view>
+            <view class="rights-c-item">2.每月2单享免邮机会；</view>
+            <view class="rights-c-item">3.满5单，第6单免费（100元以内）；</view>
+            <view class="rights-c-item">4.下单返积分；</view>
+            <view class="rights-c-item">5.邀请好友返积分。</view>
+          </view>
+        </view>
+        <view class="rights-c">
+          <view class="rights-c-header">
+            <image src="../../img/spot@3x.png" class="rights-dot icon"></image>
+            <text>积分权益</text>
+          </view>
+          <view class="rights-c-body">
+            <view class="rights-c-item">1.消费积分可抵现金支付：1积分=1.00元钱；</view>
+            <view class="rights-c-item">2.用现金、微信和储值本金支付，可获得消费积分；</view>
+            <view class="rights-c-item">3.实际返积分以实际支付情况为准。</view>
+          </view>
+        </view>
+        <!-- <view class="rights-item clearfix">
+          <view class="rights-i-left rights-1  lt">
+            <image src="../../img/spot@3x.png" class="rights-dot icon"></image>
+            <text>会员权益</text>
+          </view>
+          <view class="rights-i-right rights-2 lt">
+            ①1积分抵扣1元钱；②每月2单享免邮机会；③满5单，第6单免费（100元以内）；④下单返积分；⑤邀请好友返积分
+          </view>
+        </view>
+        <view class="rights-item clearfix">
+          <view class="rights-i-left lt">
+            <image src="../../img/spot@3x.png" class="rights-dot icon"></image>
+            <text>积分权益</text>
+          </view>
+          <view class="rights-i-right lt">
+            ①消费积分可抵现金支付：1积分=1.00元钱；②用现金、微信和储值本金支付，可获得消费积分；③实际返积分以实际支付情况为准
+          </view>
+        </view> -->
+      </view>
+    </view>
+  </view>
+
+  <view class="fixed-bottom-navbar clearfix">
+    <view class="item-1 hidden lt">
+      <image src="../../img/contact.png" mode="widthFix" class="navbar-icon"></image>
+      <!-- opacity:0 的 contact-button -->
+       <contact-button class="hidden-btn" type="default-light" size="40" session-from="webapp"></contact-button> 
+    </view>
+    <view class="item-1 lt" bindtap="goCartTap">
+      <image src="../../img/cart-2.png" mode="widthFix" class="navbar-icon"></image>
+      <!-- 购物车数量 -->
+      <view wx:if="{{cart_total.total>99}}" animation="{{animationData2}}" class="cart-num">
+        99<text class="ionc-plus">+</text>
+      </view>
+      <view wx:elif="{{cart_total.total>=0}}" animation="{{animationData2}}" class="cart-num">{{cart_total.total}}</view>
+    </view>
+    <view wx:if="{{!can_buy||no_support_show}}" class="item-2 disabled lt">立即购买</view>
+    <view wx:elif="{{can_buy&&!no_support_show}}" class="btn item-2 lt" bindtap="goSubmitPage">立即购买</view>
+    <view wx:if="{{num_change&&!no_support_show}}" class="btn item-3 lt" bindtap="addToCart">加入购物车</view>
+    <view wx:elif="{{!num_change||no_support_show}}" class="item-3 disabled lt">加入购物车</view>
+  </view>
+</view>
+
+<view wx:if="{{show_login}}" class="login-alert">
+  <view class="page-register">
+    <view class="login-header">手机号登录</view>
+    <view class="register-column">
+      <view class="register-line clearfix">
+        <input type="number" maxlength="11" class="register-input lt" placeholder="输入手机号" bindinput="phoneInput"></input>
+      </view>
+      <view class="register-line clearfix">
+        <input type="number" class="register-input lt" placeholder="输入验证码" bindinput="codeInput"></input>
+        <text wx:if="{{get_code_status}}" class="get_btn lt" bindtap="getCode">获取验证码</text>
+        <text wx:else class="get_btn lt">{{remain_time}}s</text>
+      </view>
+      <button wx:if="{{register_status==true}}" class="login_btn" bindtap="registerTap">登录</button>
+      <button wx:elif="{{register_status==false}}" class="login_btn">登录</button>
+    </view>
+
+    <image class="icon-close" catchtap="closeLogin" src="../../img/close-2-icon.png"></image>
+
+    <view wx:if="{{false}}" class="coupons-items">
+      <block wx:for="{{coupons}}" wx:for-item="item" wx:key="key">
+        <view class="coupon-item canuse">
+          <image lazy-load="true" src="../../img/weiuse.png" class="coupon-img"></image>
+          <view class="coupon-money">
+            <text class="money-sign">￥</text>
+            <text class="money-num">{{item.money}}</text>
+          </view>
+          <view class="coupon-detail">
+            <view class="coupon-txt">消费{{item.condition}}元可用</view>
+            <view class="coupon-time">有效时间：{{item.format_use_start_time}}至{{item.format_use_end_time}}</view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

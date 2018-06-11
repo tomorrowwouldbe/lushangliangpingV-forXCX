@@ -1,0 +1,77 @@
+<loadingC id="loadingC"/>
+<!-- 地址列表 -->
+<view wx:if="{{page_status=='list'}}" class="page-receiveAddrList">
+  <view class="addrList">
+    <block wx:for="{{list}}" wx:for-item="item" wx:key="key">
+      <view class="addr-item" data-index="{{index}}" data-id="{{item.id}}" bindtap="setDefaultAddress">
+        <view class="addr-i-line">
+          <text>{{item.contacts}}</text>
+          <text class="rt">{{item.phone}}</text>
+        </view>
+        <view class="addr-i-line text-overflow">{{item.province+item.country+item.region+item.detaile_address}}</view>
+        <view class="addr-i-line clearfix">
+          <view class="setStatic-btn {{item.is_default==1&&'active'}} lt clearfix" data-id="{{item.id}}" catchtap="setStaticTap">
+            <!-- <text>√</text><text>默认地址</text> -->
+            <image src="../../img/{{item.is_default==1?'right-choosed':'right-static'}}.png" class="icon-right lt"></image><text class="lt">默认地址</text>
+          </view>
+          <text wx:if="{{item.is_default==2}}" class="delete-btn rt" data-id="{{item.id}}" catchtap="deleteTap">删除</text>
+          <text class="edit-btn rt" data-item="{{item}}" catchtap="goEditTap">编辑</text>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view class="new-btn-column" bindtap="newAddrTap">
+      <image lazy-load="true" src="../../img/new-icon.png" class="new-icon"></image>
+      新增收货地址
+  </view>
+</view>
+
+<!-- 新增/编辑地址 -->
+<view wx:elif="{{page_status=='new'||page_status=='edit'}}" class="page-newAddr">
+  <view class="newAddr-column">
+    <view class="newAddr-c-body">
+      <view class="newAddr-c-b-line">
+        <text class="lt">收货人</text>
+        <input class="newAddr-input" bindinput="nameInput" value="{{name}}" placeholder="真实姓名" placeholder-style="color:#acacac"></input>
+      </view>
+      <view class="newAddr-c-b-line">
+        <text class="lt">手机号码</text>
+        <input type="number" class="newAddr-input" maxlength="11" bindinput="phoneInput" value="{{phone}}" style="color:#666" placeholder="请输入11位手机号" placeholder-style="color:#acacac"></input>
+      </view>
+    </view>
+  </view>
+  <view class="newAddr-column">
+    <view class="newAddr-c-body">
+      <view class="newAddr-c-b-line clearfix" bindtap="chooseAddress">
+        <text class="lt">所在地区</text>
+        <!-- <image src="../../img/arrow-right.png" class="arrow-right rt"></image> -->
+        <view wx:if="{{address.length>0}}" class="lt" style="color:#666;">{{address}}</view>
+        <text wx:else class="lt" style="color:#acacac;">请输入所在地址</text>
+      </view>
+      <view class="newAddr-c-b-line" style="border-bottom:0;">
+        <text class="lt">详细地址</text>
+        <input class="newAddr-input" bindinput="detailInput" value="{{detail}}" placeholder="街道，小区门牌等，不超过40字" placeholder-style="color:#acacac"></input>
+      </view>
+    </view>
+  </view>
+  <button class="new-btn-column" bindtap="sucTap">完成</button>
+</view>
+<view wx:if="{{showAddress}}" class="address-alert clearfix" bindtap="cancelAddress">
+  <view class="address-subalert" animation="{{animationData}}" catchtap="openAddress">
+    <view class="address-header">
+      <text class="confirm-btn lt" catchtap="cancelAddress">取消</text>
+      <text class="confirm-btn rt" catchtap="confirmAddress">确定</text>
+    </view>
+    <picker-view indicator-style="height: 50px;" style="width: 100%; height: 250px;" value="{{value}}" bindchange="bindChange">
+      <picker-view-column>
+        <view wx:for="{{province}}" wx:for-item="item" wx:key="key" style="line-height: 50px;text-align:center;"><text data-id="{{item.area_code}}">{{item.area_name}}</text></view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{city}}" wx:for-item="item" wx:key="key" style="line-height: 50px;text-align:center;">{{item.area_name}}</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{area}}" wx:for-item="item" wx:key="key" style="line-height: 50px;text-align:center;">{{item.area_name}}</view>
+      </picker-view-column>
+    </picker-view>
+  </view>
+</view>

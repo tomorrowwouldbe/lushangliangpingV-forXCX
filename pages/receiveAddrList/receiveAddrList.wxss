@@ -1,0 +1,129 @@
+page{
+  padding-bottom:200rpx;
+}
+.addr-item{
+  margin-bottom:20rpx;
+  padding:20rpx;
+  background-color:#fff;
+  color:#333;
+}
+.addr-i-line{
+  height:80rpx;
+  line-height:78rpx;
+  border-bottom:2rpx solid #e5e5e5;
+}
+
+.addr-item .addr-i-line:last-child{
+  border-bottom:0;
+}
+.setStatic-btn.active{
+  color:#cf2122;
+}
+.setStatic-btn{
+  color:#999;
+  font-size:32rpx;
+}
+.edit-btn{
+  color:#999;
+  padding:10rpx 20rpx;
+}
+.new-btn-column{
+  font-size:28rpx;
+  position:fixed;
+  bottom:100rpx;
+  left:0;right:0;
+  width:90%;
+  margin:0 auto;
+  height:80rpx;line-height:76rpx;
+  text-align:center;
+  background-color:#cf2122;
+  opacity:0.8;
+  color:#fff;
+  border-radius:10rpx;
+}
+.new-icon{
+  width:40rpx;height:40rpx;
+  margin-top:20rpx;
+}
+.icon-right{
+  width:40rpx;
+  height:40rpx;
+  margin-top:21rpx;
+  margin-right:5rpx;
+}
+
+.delete-btn{
+  color:#666;
+  padding:10rpx 20rpx;
+  margin-left:20rpx;
+}
+
+
+/* new */
+.newAddr-column{
+  background-color:#fff;
+  /* margin-bottom:20rpx; */
+  color:#333;
+}
+.newAddr-c-header,.newAddr-c-b-line{
+  height:106rpx;
+  line-height:104rpx;
+  border-bottom:2rpx solid #e5e5e5;
+  padding:0 20rpx;
+}
+.newAddr-c-body{
+  padding-left:20rpx;
+}
+.newAddr-c-b-line{
+  padding-left:0;
+}
+/* .newAddr-c-body .newAddr-c-b-line:last-child{
+  border-bottom:0;
+} */
+.newAddr-c-b-line text:first-child{
+  width:75px;
+}
+.newAddr-input{
+  display:inline-block;
+  height:104rpx;
+  line-height:104rpx;
+  width:500rpx;
+  color:#666;
+}
+.new-complete{
+  width:90%;
+  margin:90rpx auto;
+  height:80rpx;line-height:76rpx;
+}
+
+.address-alert{
+  position:fixed;
+  left:0;top:0;
+  width:100%;height:100%;
+  background:rgba(0,0,0,0.5);
+  z-index:1000000;
+}
+.address-subalert{
+  position:absolute;
+  left:0;bottom:0;
+  width:100%;height:600rpx;
+  background-color:#fff;
+  transform: translateY(300px);
+}
+.address-header{
+  height:100rpx;
+  line-height:98rpx;
+  border-bottom:2rpx solid #ccc;
+  font-size:32rpx;
+  padding:0 20rpx;
+  color:#999;
+}
+.confirm-btn{
+  color:#cf2122;
+  padding:0 30rpx;
+}
+.arrow-right{
+  width:40rpx;
+  height:40rpx;
+  margin-top:20rpx;
+}

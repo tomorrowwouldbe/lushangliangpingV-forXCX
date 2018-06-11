@@ -1,0 +1,33 @@
+
+image{vertical-align: top;}
+.page-activity{
+  position:relative;
+}
+.bg-img{
+  width:100%;
+}
+.bg-logo{
+  position:absolute;
+  left:0;right:0;top:410rpx;
+  z-index:10;
+  width:240rpx;
+  margin:0 auto;
+}
+.p-a-imgs{
+  position:absolute;
+  left:0;right:0;top:435rpx;
+  width:calc(100% - 116rpx);
+  margin:0 auto;
+  min-height:200rpx;
+}
+.p-a-img{
+  width:302rpx;
+  height:422rpx;
+  margin-top:60rpx;
+}
+.p-a-img:nth-child(2n+1){
+  margin-right:calc(100% - 604rpx);
+}
+.p-a-img:nth-child(1),.p-a-img:nth-child(2){
+  margin-top:44rpx;
+}

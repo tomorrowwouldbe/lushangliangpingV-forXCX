@@ -1,0 +1,17 @@
+<loadingC id="loadingC"/> 
+<view class="page-activity">
+  <image class="bg-img" bindload="bgLoad" src="{{image_origin}}0_3x.png" mode="widthFix"></image>
+  <image class="bg-logo" bindload="logoLoad" src="{{image_origin}}15_3x.png" mode="widthFix"></image>
+  <view class="p-a-imgs">
+      <image class="p-a-img" bindload="imgLoad" data-id="553" bindtap="jump" src="{{image_origin}}1_3x.png"></image>
+      <image class="p-a-img" bindload="imgLoad" data-id="554" bindtap="jump" src="{{image_origin}}2_3x.png"></image>
+      <image class="p-a-img" bindload="imgLoad" data-id="558" bindtap="jump" src="{{image_origin}}3_3x.png"></image>
+      <image class="p-a-img" bindload="imgLoad" data-id="559" bindtap="jump" src="{{image_origin}}4_3x.png"></image>
+      <image class="p-a-img" bindload="imgLoad" data-id="561" bindtap="jump" src="{{image_origin}}5_3x.png"></image>
+      <image class="p-a-img" bindload="imgLoad" data-id="562" bindtap="jump" src="{{image_origin}}6_3x.png"></image>
+      <image class="p-a-img" bindload="imgLoad" data-id="564" bindtap="jump" src="{{image_origin}}7_3x.png"></image>
+      <image class="p-a-img" bindload="imgLoad" data-id="566" bindtap="jump" src="{{image_origin}}8_3x.png"></image>
+      <image class="p-a-img" bindload="imgLoad" data-id="567" bindtap="jump" src="{{image_origin}}9_3x.png"></image>
+      <image class="p-a-img" bindload="imgLoad" data-id="568" bindtap="jump" src="{{image_origin}}10_3x.png"></image> 
+  </view>
+</view>

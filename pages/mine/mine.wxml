@@ -1,0 +1,216 @@
+<loadingC id="loadingC"/>
+ <cover id="cover" bindtap="setting"/>  
+<view wx:if="{{status=='registed'}}" class="page-mine">
+  <navigator url="../selfInfor/selfInfor">
+    <!-- 头部 -->
+    <view class="mine-header flex-column">
+      <image src="{{userInfo.avatarUrl}}" class="mine-img"></image>
+      <view class="mine-name">
+        {{lushang_user.member.nickname}}
+        <image wx:if="{{is_member==1}}" src="../../img/vipicon@3x.png" mode="widthFix" class="vip-icon"></image>
+      </view>
+      <text class="mine-tel">{{lushang_user.member.mobile}}</text>
+    </view>
+  </navigator>
+  <view class="mine-nav clearfix">
+    <navigator url="../myInvitation/myInvitation">
+      <view class="nav-item lt flex-column">
+        <view>{{invited_num}}</view>
+        <view>我的邀请</view>
+      </view>
+    </navigator>
+    <navigator url="../balance/balance">
+      <view class="nav-item lt flex-column">
+        <view>{{lushang_user.member.balance}}</view>
+        <view>余额</view>
+      </view>
+    </navigator>
+    <navigator url="../integral/integral">
+      <view class="nav-item lt flex-column">
+        <view>{{lushang_user.member.scores}}</view>
+        <view>积分</view>
+      </view>
+    </navigator>
+    <navigator url="../coupons/coupons">
+      <view class="nav-item lt flex-column">
+        <view>{{coupons_num}}</view>
+        <view>优惠券</view>
+      </view>
+    </navigator>
+  </view>
+  <view class="mine-orders">
+    <navigator url="../ordersList/ordersList?type=0">
+      <view class="orders-header clearfix">
+        <text class="header-txt lt">我的订单</text>
+        <view class="header-all rt flex-row">
+          <text>查看全部订单</text>
+          <image src="../../img/arrow-right.png" class="arrow-right" style="position:relative;top:-1px;"></image>
+        </view>
+      </view>
+    </navigator>
+    <view class="orders-body clearfix">
+      <navigator url="../ordersList/ordersList?type=1">
+        <view class="orders-item lt flex-column">
+          <view class="order-icon-box">
+            <image src="../../img/order-1.png" class="order-icon"></image>
+            <view wx:if="{{orders.WAITPAY<=99}}" class="order-num">{{orders.WAITPAY}}</view>
+            <view wx:elif="{{orders.WAITPAY>99}}" class="order-num">99<text class="icon-plus">+</text></view>
+          </view>
+          <text>待支付</text>
+        </view>
+      </navigator>
+      <navigator url="../ordersList/ordersList?type=2">
+        <view class="orders-item lt flex-column">
+          <view class="order-icon-box">
+            <image src="../../img/order-2.png" class="order-icon"></image>
+            <view wx:if="{{orders.WAITSEND<=99}}" class="order-num">{{orders.WAITSEND}}</view>
+            <view wx:elif="{{orders.WAITSEND>99}}" class="order-num">99<text class="icon-plus">+</text></view>
+          </view>
+          <text>待发货</text>
+        </view>
+      </navigator>
+      <navigator url="../ordersList/ordersList?type=3">
+        <view class="orders-item lt flex-column">
+          <view class="order-icon-box">
+            <image src="../../img/order-3.png" class="order-icon"></image>
+            <view wx:if="{{orders.WAITRECEIVE<=99}}" class="order-num">{{orders.WAITRECEIVE}}</view>
+            <view wx:elif="{{orders.WAITRECEIVE>99}}" class="order-num">99<text class="icon-plus">+</text></view>
+          </view>
+          <text>待收货</text>
+        </view>
+      </navigator>
+      <navigator url="../ordersList/ordersList?type=4">
+        <view class="orders-item lt flex-column">
+          <view class="order-icon-box">
+            <image src="../../img/order-4.png" class="order-icon"></image>
+            <view wx:if="{{orders.FINISH<=99}}" class="order-num">{{orders.FINISH}}</view>
+            <view wx:elif="{{orders.FINISH>99}}" class="order-num">99<text class="icon-plus">+</text></view>
+          </view>
+          <text>已完成</text>
+        </view>
+      </navigator>
+    </view>
+  </view>
+  <view class="mine-items">
+    <navigator wx:if="{{is_member==0}}" url="../becomeVip/becomeVip">
+      <view class="mine-item clearfix">
+        <text class="item-txt lt">成为会员</text>
+        <image src="../../img/arrow-right.png" class="arrow-right rt"></image>
+      </view>
+    </navigator>
+    <view class="mine-item clearfix">
+      <text class="item-txt lt">奖金余额</text>
+      <text class="item-right rt" style="margin-right:10px;"> ¥ {{lushang_user.member.balance_reward}}元</text>
+    </view>
+    <navigator url="../balanceRecharge/balanceRecharge">
+      <view class="mine-item clearfix">
+        <text class="item-txt lt">账户充值</text>
+        <image src="../../img/arrow-right.png" class="arrow-right rt"></image>
+      </view>
+    </navigator>
+    <navigator wx:if="{{false}}" url="../inviteFriends/inviteFriends">
+      <view class="mine-item clearfix">
+        <text class="item-txt lt">邀请好友赢奖金</text>
+        <image src="../../img/arrow-right.png" class="arrow-right rt"></image>
+        <text class="item-right rt">获得奖金￥20.00元</text>
+      </view>
+    </navigator>
+    <navigator url="../selfInfor/selfInfor">
+      <view class="mine-item clearfix">
+        <text class="item-txt lt">设置</text>
+        <image src="../../img/arrow-right.png" class="arrow-right rt"></image>
+      </view>
+    </navigator>
+  </view>
+</view>
+
+<view wx:elif="{{status=='unregisted'}}">
+  <view class="page-mine" bindtap="goRegisterTap">
+      <!-- 头部 -->
+      <view class="mine-header flex-column">
+        <image src="../../img/img@3x.png" class="mine-img"></image>
+        <view class="mine-name">未登录</view>
+        <text class="mine-tel">点击登录账号</text>
+      </view>
+    <view class="mine-nav clearfix">
+        <view class="nav-item lt flex-column">
+          <view>{{invited_num}}</view>
+          <view>我的邀请</view>
+        </view>
+        <view class="nav-item lt flex-column">
+          <view>{{lushang_user.member.balance||'0.00'}}</view>
+          <view>余额</view>
+        </view>
+        <view class="nav-item lt flex-column">
+          <view>{{lushang_user.member.scores||'0.00'}}</view>
+          <view>积分</view>
+        </view>
+        <view class="nav-item lt flex-column">
+          <view>{{coupons_num}}</view>
+          <view>优惠券</view>
+        </view>
+    </view>
+    <view class="mine-orders">
+        <view class="orders-header clearfix">
+          <text class="header-txt lt">我的订单</text>
+          <view class="header-all rt flex-row">
+            <text>查看全部订单</text>
+            <image src="../../img/arrow-right.png" class="arrow-right" style="position:relative;top:-1px;"></image>
+          </view>
+        </view>
+      <view class="orders-body clearfix">
+          <view class="orders-item lt flex-column">
+            <view class="order-icon-box">
+              <image src="../../img/order-1.png" class="order-icon"></image>
+              <text class="order-num">{{orders.WAITPAY||'0'}}</text>
+            </view>
+            <text>待支付</text>
+          </view>
+          <view class="orders-item lt flex-column">
+            <view class="order-icon-box">
+              <image src="../../img/order-2.png" class="order-icon"></image>
+              <text class="order-num">{{orders.WAITSEND||'0'}}</text>
+            </view>
+            <text>待发货</text>
+          </view>
+          <view class="orders-item lt flex-column">
+            <view class="order-icon-box">
+              <image src="../../img/order-3.png" class="order-icon"></image>
+              <text class="order-num">{{orders.WAITRECEIVE||'0'}}</text>
+            </view>
+            <text>待收货</text>
+          </view>
+          <view class="orders-item lt flex-column">
+            <view class="order-icon-box">
+              <image src="../../img/order-4.png" class="order-icon"></image>
+              <text class="order-num">{{orders.FINISH||'0'}}</text>
+            </view>
+            <text>已完成</text>
+          </view>
+      </view>
+    </view>
+    <view class="mine-items">
+        <view class="mine-item clearfix">
+          <text class="item-txt lt">成为会员</text>
+          <image src="../../img/arrow-right.png" class="arrow-right rt"></image>
+        </view>
+      <view class="mine-item clearfix">
+        <text class="item-txt lt">奖金余额</text>
+        <text class="item-right rt" style="margin-right:10px;">￥{{lushang_user.member.balance_reward||'0.00'}}元</text>
+      </view>
+        <view class="mine-item clearfix">
+          <text class="item-txt lt">账户充值</text>
+          <image src="../../img/arrow-right.png" class="arrow-right rt"></image>
+        </view>
+        <view wx:if="{{false}}" class="mine-item clearfix">
+          <text class="item-txt lt">邀请好友赢奖金</text>
+          <image src="../../img/arrow-right.png" class="arrow-right rt"></image>
+          <text class="item-right rt">获得奖金￥20.00元</text>
+        </view>
+        <view class="mine-item clearfix">
+          <text class="item-txt lt">设置</text>
+          <image src="../../img/arrow-right.png" class="arrow-right rt"></image>
+        </view>
+    </view>
+  </view>
+</view>

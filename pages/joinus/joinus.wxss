@@ -1,0 +1,25 @@
+page{
+
+}
+.logo{
+  position:fixed;
+  top:0;bottom:100rpx;left:0;right:0;margin:auto;z-index:10;
+  width:300rpx;
+}
+.f_tel{
+  position:fixed;
+  left:0;right:0;bottom:200rpx;
+  width:90%;
+  margin:0 auto;
+  color:#666;
+}
+.btn-join{
+  position:fixed;
+  left:0;right:0;bottom:60rpx;
+  width:90%;
+  margin:0 auto;
+  height:80rpx;
+  line-height:80rpx;
+  background-color:#343434;
+  color:#fff;
+}

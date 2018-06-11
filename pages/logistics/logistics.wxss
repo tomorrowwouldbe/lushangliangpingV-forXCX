@@ -1,0 +1,125 @@
+page{
+  height:100%;
+}
+.page-logistics{
+  height:100%;
+  color:#999;
+}
+.logistics-header{
+  height:200rpx;
+  padding:20rpx;
+  margin-bottom:20rpx;
+  background-color:#fff;
+}
+.logistics{
+  height:calc(100% - 220rpx);
+  background-color:#fff;
+  text-align:center;
+  font-size:40rpx;
+  line-height:160rpx;
+}
+.header-left{
+  width:160rpx;
+  height:160rpx;
+  margin-right:20rpx;
+  position:relative;
+  background-color:#eee;
+}
+.product-img{
+  width:100%;
+  height:100%;
+}
+.header-num{
+  position:absolute;
+  left:0;bottom:0;
+  width:100%;
+  background-color:rgba(0,0,0,0.4);
+  color:#fff;
+  text-align:center;
+  height:40rpx;
+  line-height:40rpx;
+  font-size:28rpx;
+}
+.header-line{
+  height:53rpx;
+  line-height:53rpx;
+}
+
+
+.logistics-body{
+  background-color:#fff;
+  color:#999;
+  font-size:28rpx;
+}
+.body-line{
+  padding:10px 10px 0;
+  position:relative;
+}
+.logistics-body .body-line:first-child,.logistics-body .body-line:first-child .line-footer{
+  color:#cf2122;
+}
+.icon-circle{
+  width:12px;
+  height:12px;
+  position:relative;
+  top:5px;
+  z-index:2;
+}
+.icon-circle.active{
+  transform:scale(1.2);
+}
+
+.line-header{
+  line-height:20px;
+}
+.line-footer{
+  margin-left:35px;
+  border-bottom:1px solid #e5e5e5;
+  line-height:30px;
+  color:#999;
+  font-size:24rpx;
+}
+.logistics-body .body-line:last-child .line-footer{
+  border-bottom:0;
+}
+.line-txt{
+  display:inline-block;
+  width:calc(100% - 35px);
+}
+.vertical-line{
+  position:absolute;
+  top:20px;left:15px;
+  width:1px;height:100%;
+  background-color:#F2F2F2;
+}
+
+.delivery_staff{
+  height:110rpx;
+  line-height:110rpx;
+  padding:15rpx 10px;
+  background-color:#fff;
+  margin-bottom:20rpx;
+}
+.delivery_s-img{
+  width:80rpx;
+  height:80rpx;
+  margin-right:20rpx;
+}
+.arrow-right{
+  width:60rpx;
+  height:60rpx;
+  margin-top:10rpx;
+}
+.icon-phone{
+  width:50rpx;
+  margin-top:15rpx;
+}
+.delivery_s-txt{
+  font-size:24rpx;
+  color:#999;
+  line-height:38rpx;
+}
+.delivery_s-name{
+  font-size:30rpx;
+  color:#333;
+}

@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "员工内购",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "loadingC": "/components/loadingCircle/loading"
+  }
+}

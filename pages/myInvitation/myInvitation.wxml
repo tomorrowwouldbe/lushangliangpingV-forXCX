@@ -1,0 +1,46 @@
+ <view class="page-invitation" style="min-height:{{winHeight}}px" bindtouchstart="touchstart" bindtouchend="touchend">
+  <view class="invi-header clearfix">
+    <view class="header-item {{activeIndex==0&&'active'}} lt" data-index="0" bindtap="chooseListTap"><text>已邀会员</text></view>
+    <view class="header-item {{activeIndex==1&&'active'}} lt" data-index="1" bindtap="chooseListTap"><text>已邀粉丝</text></view>
+  </view>
+  <view wx:if="{{!listOneShow}}" class="invi-body">
+    <view wx:if="{{vips.length}}">
+      <block wx:for="{{vips}}" wx:for-item="item" wx:key="key">
+        <view class="body-item clearfix">
+          <image lazy-load="true" src="{{item.headimg}}" class="feature-img lt"></image>
+          <view class="feature-txt lt">
+            <view class="feature-name">
+              <text>{{item.nickname}}</text>
+              <image lazy-load="true" src="../../img/member_vip.png" class="member_vip"></image>
+            </view>
+            <view class="feature-num">
+              <text class="feature-tel">{{item.mobile}}</text>
+              <text class="feature-time rt">{{item.ck_time}}</text>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view wx:else class="null-notice">不好意思，您暂时还没有已邀会员...</view>
+  </view>
+  <view wx:else class="invi-body">
+    <view wx:if="{{fans.length}}">
+      <block wx:for="{{fans}}" wx:for-item="item" wx:key="key">
+        <view class="body-item clearfix">
+          <image lazy-load="true" src="{{item.headimg}}" class="feature-img lt"></image>
+          <view class="feature-txt lt">
+            <view class="feature-name">
+              <text>{{item.nickname}}</text>
+              <image lazy-load="true" src="../../img/member_vip.png" class="member_vip"></image>
+            </view>
+            <view class="feature-num">
+              <text class="feature-tel">{{item.mobile}}</text>
+              <text class="feature-time rt">{{item.ck_time}}</text>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view wx:else class="null-notice">不好意思，您暂时还没有已邀粉丝...</view>
+  </view>
+</view>

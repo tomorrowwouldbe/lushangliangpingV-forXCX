@@ -1,0 +1,82 @@
+<view class="page-orders">
+  <loadingC id="loadingC"/> 
+  <view class="orders-nav clearfix">
+    <view class="order-nav {{navActiveIndex==0&&'active'}} lt" data-index="0" bindtap="navChooseTap"><text>全部</text></view>
+    <view class="order-nav {{navActiveIndex==1&&'active'}} lt" data-index="1" bindtap="navChooseTap"><text>待支付</text></view>
+    <view class="order-nav {{navActiveIndex==2&&'active'}} lt" data-index="2" bindtap="navChooseTap"><text>待发货</text></view>
+    <view class="order-nav {{navActiveIndex==3&&'active'}} lt" data-index="3" bindtap="navChooseTap"><text>待收货</text></view>
+    <view class="order-nav {{navActiveIndex==4&&'active'}} lt" data-index="4" bindtap="navChooseTap"><text>已完成</text></view>
+  </view>
+
+  <view wx:if="{{!null_show}}" class="orders-list" style="min-height:{{winHeight-50}}px" bindtouchstart="touchstart" bindtouchend="touchend">
+    <block wx:for="{{list_all}}" wx:for-item="item" wx:key="key">
+      <view class="order-item">
+        <view class="order-i-header clearfix">
+          <image wx:if="{{item.status_code==1||item.status_code==5||item.status_code==6}}" src="../../img/waiting_pay.png" mode="widthFix" class="cate-icon lt"></image>
+          <image wx:elif="{{item.status_code==2}}" src="../../img/waiting_fahuo.png"  lowsrc="../../img/cate_pro_default.png" mode="widthFix" class="cate-icon lt"></image>
+          <image wx:elif="{{item.status_code==3}}" src="../../img/waiting_shouhuo.png" mode="widthFix" class="cate-icon lt"></image>
+          <image wx:elif="{{item.status_code==4}}" src="../../img/waiting_finished.png" mode="widthFix" class="cate-icon lt"></image>
+          <image wx:elif="{{item.status_code==7||item.status_code==8}}" src="../../img/Refunded@3x.png" mode="widthFix" class="cate-icon lt" style="margin-top:34rpx;"></image>
+          <text class="cate-txt lt">{{item.status_str}}订单</text>
+          <text selectable="true" class="order-i-number rt">{{item.order_sn}}</text>
+        </view>
+        
+        <view class="order-i-body">
+          <block wx:for="{{item.goods}}" wx:for-item="subItem" wx:key="key1">
+              <view wx:if="{{jump_click}}" class="order-i-b-item clearfix" data-id="{{subItem.order_id}}" bindtap="jump">
+                <image src="{{subItem.original_img}}" class="order-i-img lt"></image>
+                <view class="order-i-txt lt">
+                  <view class="order-i-name text-overflow">{{subItem.goods_name||'默认标题'}}</view>
+                  <view wx:if="{{subItem.spec_key_name.length>0}}" class="order-i-signs text-overflow">{{'('+subItem.spec_key_name+')'}}</view>
+                  <view style="margin-top:{{subItem.spec_key_name.length==0&&'20px'}}" class="order-i-num">X{{subItem.goods_num}}</view>
+                  <view class="order-i-price clearfix">
+                    <view wx:if="{{subItem.is_staff==1}}" class="price_1 lt" style="color:#666">员工价： ¥ <text>{{subItem.staff_price>0?subItem.staff_price:subItem.price}}</text></view>
+                    <view wx:else class="price_1 lt" style="color:#666">原　价： ¥ <text>{{subItem.goods_price}}</text></view>
+                    <view wx:if="{{subItem.member_goods_price>0}}" class="price_1 lt">会员价： ¥ <text>{{subItem.member_goods_price}}</text></view>
+                  </view>
+                </view>
+              </view>
+              <view wx:else class="order-i-b-item clearfix" data-id="{{subItem.order_id}}">
+                <image lowsrc="../../img/cate_pro_default.png" src="{{subItem.original_img}}" class="order-i-img lt"></image>
+                <view class="order-i-txt lt">
+                  <view class="order-i-name text-overflow">{{subItem.goods_name||'默认标题'}}</view>
+                  <view wx:if="{{subItem.spec_key_name.length>0}}" class="order-i-signs text-overflow">（{{subItem.spec_key_name}}）</view>
+                  <view style="margin-top:{{subItem.spec_key_name.length==0&&'20px'}}" class="order-i-num">X{{subItem.goods_num}}</view>
+                  <view class="order-i-price clearfix">
+                    <view wx:if="{{subItem.is_staff==1}}" class="price_1 lt">员工价： ¥ <text>{{subItem.staff_price>0?subItem.staff_price:subItem.price}}</text></view>
+                    <view wx:else class="price_1 lt">原　价： ¥ <text>{{subItem.goods_price}}</text></view>
+                    <view wx:if="{{subItem.member_goods_price>0}}" class="price_1 lt">会员价： ¥ <text>{{subItem.member_goods_price}}</text></view>
+                  </view>
+                </view>
+              </view>
+          </block>
+        </view>
+        <view class="order-i-footer">
+          <view class="order-i-f-txt clearfix">
+            <view class="order-total-box rt">
+              需支付： ¥ 
+              <!-- <text class="price-icon"> ¥ </text> -->
+              <view class="price-num">
+                <text class="int">{{item.order_amount}}</text>
+              </view>
+            </view>
+            <text class="rt">共 {{item.total_num}} 件商品</text>
+          </view>
+          <view wx:if="{{item.status_code==1||item.status_code==3||item.status_code==7||item.status_code==8}}" class="order-i-f-btns clearfix">
+            <text wx:if="{{item.status_code==1}}" class="btn btn-pay rt" catchtap="pay" data-id="{{item.order_id}}">去支付</text>
+            <navigator url="../logistics/logistics?order_id={{item.order_id}}">
+              <text wx:if="{{item.status_code==3}}" class="btn btn-wuliu rt">查看物流</text>
+            </navigator> 
+            <text wx:if="{{item.status_code==3}}" class="btn btn-pay rt" data-id="{{item.order_id}}" bindtap="confirmGet">确认收货</text> 
+            <text wx:if="{{item.status_code==7}}" class="refund-att rt">退款中</text>
+            <text wx:if="{{item.status_code==8}}" class="refund-att rt">退款成功</text>
+          </view>
+        </view>
+      </view>
+    </block>
+    <view wx:if="{{no_more}}" class="no-attention">没有更多了...</view>
+  </view>
+  <view wx:else class="orders-list" style="min-height:{{winHeight-50}}px;" bindtouchstart="touchstart" bindtouchend="touchend">
+    <image src="../../img/Noorder@3x.png" class="null-img"></image>
+  </view>
+</view>

@@ -1,0 +1,19 @@
+<view class="page-becomeVip flex-column">
+  <image lazy-load="true" src="../../img/firm_logo.png" mode="widthFix" class="logo"></image>
+
+  <view class="vip-title">充值金额</view>
+  <view class="vip-line clearfix">
+    <text class="price-sign lt"> ¥ </text>
+    <input class="vip-input lt" value="100" disabled></input>
+  </view>
+
+  <view class="vip-btns clearfix">
+    <button wx:if="{{beVip_status==true}}" type="warn" class="vip-btn btn lt" bindtap="becomeVip">成为会员</button>
+    <button wx:if="{{beVip_status==false}}" type="warn" disabled class="vip-btn btn lt">成为会员</button>
+
+    <button wx:if="{{goIndex_status==true}}" type="warn" class="home-btn btn lt" bindtap="goIndexPage">进入首页</button>
+    <button wx:if="{{goIndex_status==false}}" type="warn" class="home-btn btn lt">进入首页</button>
+  </view>
+  
+  <view wx:if="{{tel.length>0}}" class="inviter">邀请人：{{tel}}</view>
+</view>

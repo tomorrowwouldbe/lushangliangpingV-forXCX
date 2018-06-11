@@ -1,0 +1,43 @@
+.pOS-header{
+  line-height:30px;
+  color:#cf2122 !important;
+}
+.pOS-icon{
+  width:20px;
+  height:20px;
+  margin-top:5px;
+  margin-right:10px;
+}
+.body-item text{
+  color:#cf2122;
+}
+.pOS-footer{
+  text-align:center;
+}
+.footer-att{
+  margin-bottom:76rpx;
+  font-size:28rpx;
+  color:#999;
+  margin-top:60rpx;
+}
+.body-item{
+  line-height:20px;
+}
+.btn{
+ display:inline-block;
+ width:250rpx;
+ text-align:center;
+ height:80rpx;
+ line-height:76rpx;
+ border:2rpx solid #cf2122;
+ border-radius:6rpx;
+ font-size:28rpx;
+ color:#cf2122;
+}
+.btn-1{margin-right:120rpx;}
+.main{
+  background-color:#fff;
+  margin-bottom:10px;
+  padding:10px;
+  color:#999;
+}

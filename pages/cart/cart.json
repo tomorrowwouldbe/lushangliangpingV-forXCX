@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText":"路上商城",
+  "enablePullDownRefresh": false,
+  "usingComponents":{
+    "loadingC": "/components/loadingCircle/loading",
+    "cover": "/components/cover/cover"
+  }
+}

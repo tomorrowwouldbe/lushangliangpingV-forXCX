@@ -1,0 +1,3 @@
+<view class="fixed-toast" hidden="{{isShow==false}}">
+  <text class="toast-txt text-overflow">{{text}}</text>
+</view>

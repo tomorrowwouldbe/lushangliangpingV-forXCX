@@ -1,0 +1,141 @@
+<loadingC id="loadingC"/> 
+ <cover id="cover" bindtap="setting"/> 
+<view wx:if="{{status=='registed'}}" class="page-cart">
+  <!-- 头部 -->
+  <view wx:if="{{cartList.length}}" class="cart-header">
+    <text>购物车</text>
+    <text wx:if="{{!canEdit&&cartList.length>0}}" class="edit-btn" bindtap="editTap">编辑</text>
+    <text wx:elif="{{cartList.length>0}}" class="edit-btn" bindtap="confirmEditTap">完成</text>
+  </view>
+  <!-- 列表 -->
+  <view wx:if="{{cartList.length>0}}" class="cart-list" scroll-y style="height:{{winHeight-100}}px;overflow-x:hidden;padding-bottom:10px">
+  <view>
+    <block wx:for="{{cartList}}" wx:for-item="item" wx:key="key">
+      <view class="cart-item clearfix">
+        <!-- icon：选择按钮 -->
+        <image lazy-load="true" src="../../img/{{item.isChoosed?'choosed-icon':'unchoosed-icon'}}.png" class="choose-icon lt" bindtap="cartItemtap" id="{{item.id}}"></image>
+        <!-- 可点击去商品详情页状态 -->
+        <view wx:if="{{go_productDetail}}" class="product-infor lt clearfix" data-id="{{item.goods_id}}" data-order_id="{{item.id}}"  bindtap="goPageDetail">
+          <!-- img：商品图片 -->
+          <image lazy-load="true" src="{{item.original_img}}" class="product-img lt"></image>
+          <view wx:if="{{!canEdit}}" class="product-detail text-overflow lt">
+            <!-- 商品名称 -->
+            <view class="product-name text-overflow">{{item.goods_name}}</view>
+            <!-- 商品规格分类 -->
+            <view wx:if="{{item.spec_key_name.length>0}}" class="product-signs text-overflow">{{'('+item.spec_key_name+')'}}</view>
+            <view class="product-price text-overflow clearfix" style="margin-top:{{item.spec_key_name.length>0?'40rpx':'78rpx'}}">
+              <view wx:if="{{item.is_staff==0}}" class="price_1 price lt">原　价: ¥<text>{{item.price}}</text></view>
+              <view wx:else class="price_1 price lt">员工价: ¥<text>{{item.staff_price>0?item.staff_price:item.price}}</text></view>
+              <view wx:if="{{item.member_goods_price>0}}" class="price_1 member_price lt">会员价: ¥<text>{{item.member_goods_price}}</text></view>
+              <!-- 商品数量 -->
+              <text class="product-num rt">x{{item.goods_num}}</text>
+            </view>
+          </view>
+          <view wx:else class="product-detail text-overflow lt">
+            <!-- 商品名称 -->
+            <view class="product-name text-overflow">{{item.goods_name}}</view>
+            <!-- 商品规格分类 -->
+            <view wx:if="{{item.spec_key_name.length>0}}" class="product-signs text-overflow">{{'('+item.spec_key_name+')'}}</view>
+            <view class="product-price text-overflow" style="margin-top:{{item.spec_key_name.length>0&&item.member_goods_price>0?'16rpx':item.spec_key_name.length>0&&item.member_goods_price==0?'52rpx':item.spec_key_name.length==0&&item.member_goods_price>0?'52rpx':'80rpx'}}">
+              <view wx:if="{{item.is_staff==0}}" class="price_1 price">原　价: ¥<text>{{item.price}}</text></view>
+              <view wx:else class="price_1 price">员工价: ¥<text>{{item.staff_price>0?item.staff_price:item.price}}</text></view>
+              <view wx:if="{{item.member_goods_price>0}}" class="price_1 member_price">会员价: ¥<text>{{item.member_goods_price}}</text></view>
+              <!-- 可编辑状态 -->
+              <view class="calc-items clearfix">
+                <!-- 数量：- -->
+                <text class="reduce-btn calc-item lt" id="{{item.id}}" catchtap="reduceTap">-</text>
+                <text class="calc-value calc-item lt">{{item.goods_num}}</text>
+                <!-- 数量：+ -->
+                <text class="add-btn calc-item lt" id="{{item.id}}" catchtap="addTap">+</text>
+              </view>
+            </view>
+          </view>
+        </view>
+
+        <!-- 不可点击去商品详情页状态 -->
+        <view wx:else class="product-infor lt clearfix">
+          <!-- img：商品图片 -->
+          <image lazy-load="true" src="{{item.original_img}}" class="product-img lt"></image>
+          <view wx:if="{{!canEdit}}" class="product-detail text-overflow lt">
+            <!-- 商品名称 -->
+            <view class="product-name text-overflow">{{item.goods_name}}</view>
+            <!-- 商品规格分类 -->
+            <view wx:if="{{item.spec_key_name.length>0}}" class="product-signs text-overflow">{{'('+item.spec_key_name+')'}}</view>
+            <view class="product-price text-overflow clearfix" style="margin-top:{{item.spec_key_name.length>0?'40rpx':'78rpx'}}">
+              <view wx:if="{{item.is_staff==0}}" class="price_1 price lt">原　价: ¥<text>{{item.price}}</text></view>
+              <view wx:else class="price_1 price lt">员工价: ¥<text>{{item.staff_price>0?item.staff_price:item.price}}</text></view>
+              <view wx:if="{{item.member_goods_price>0}}" class="price_1 member_price lt">会员价: ¥<text>{{item.member_goods_price}}</text></view>
+              <!-- 商品数量 -->
+              <text class="product-num rt">x{{item.goods_num}}</text>
+            </view>
+          </view>
+          <view wx:else class="product-detail text-overflow lt">
+            <!-- 商品名称 -->
+            <view class="product-name text-overflow">{{item.goods_name}}</view>
+            <!-- 商品规格分类 -->
+            <view wx:if="{{item.spec_key_name.length>0}}" class="product-signs text-overflow">{{'('+item.spec_key_name+')'}}</view>
+            <view class="product-price text-overflow" style="margin-top:{{item.spec_key_name.length>0&&item.member_goods_price>0?'8rpx':item.spec_key_name.length>0&&item.member_goods_price==0?'40rpx':item.spec_key_name.length==0&&item.member_goods_price>0?'40rpx':'78rpx'}}">
+              <view wx:if="{{item.is_staff==0}}" class="price_1 price">原　价: ¥<text>{{item.price}}</text></view>
+              <view wx:else class="price_1 price">员工价: ¥<text>{{item.staff_price>0?item.staff_price:item.price}}</text></view>
+              <view wx:if="{{item.member_goods_price>0}}" class="price_1 member_price">会员价: ¥<text>{{item.member_goods_price}}</text></view>
+              <!-- 可编辑状态 -->
+              <view class="calc-items clearfix">
+                <!-- 数量：- -->
+                <text class="reduce-btn calc-item lt" id="{{item.id}}" catchtap="reduceTap">-</text>
+                <text class="calc-value calc-item lt">{{item.goods_num}}</text>
+                <!-- 数量：+ -->
+                <text class="add-btn calc-item lt" id="{{item.id}}" catchtap="addTap">+</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+    </view>
+  </view>
+  
+  <view wx:else class="cart-is-empty">
+    <!-- 默认购物车为空 -->
+    <image lazy-load="true" src="{{image_origin+'null-too.png'}}" class="null-img"></image>
+  </view>
+
+  <!-- 底部固定 -->
+  <view wx:if="{{cartList.length>0&&is_member==0&&false}}" class="vip-attention clearfix" bindtap="goVipPage">
+    <text class="lt">成为会员后,立即优惠 {{vip_cut}} 元</text>
+    <view class="rt">
+      <text>成为会员</text>
+      <image lazy-load="true" src="../../img/Arrow@3x.png" class="arrow"></image>
+    </view>
+  </view>
+
+  <view wx:if="{{cartList.length}}" class="fixed-bottom-navbar clearfix">
+    <!-- 是否全选 -->
+    <view class="chooseAll flex-row lt" bindtap="chooseAllTap">
+      <image lazy-load="true" src="../../img/{{chooseAll?'choosed-icon':'unchoosed-icon'}}.png" class="chooseAll-icon"></image>
+      <text style="color:#999;font-size:16px;">全选</text>
+    </view>
+    <!-- 状态：可编辑->删除所选，不可编辑->下单 -->
+    <text wx:if="{{cartList.length>0&&canEdit&&choosedNum}}" class="do-btn rt" bindtap="deleteTap">删除所选</text>
+    <text wx:elif="{{cartList.length>0&&canEdit&&!choosedNum}}" class="do-btn rt disabled">删除所选</text>
+    <text wx:elif="{{!canEdit&&choosedNum&&!xiaDan_click}}" class="do-btn rt" bindtap="xiaDanTap">下单</text>
+    <text wx:elif="{{!canEdit&&!choosedNum||!canEdit&&choosedNum&&xiaDan_click}}" class="do-btn rt disabled">下单</text>
+    <!-- 合计 -->
+    <view wx:if="{{!canEdit}}" class="total rt">
+      <text class="total-txt" style="color:#999;">合计：</text>
+      <text class="total-num"> ¥ {{total}}</text>
+    </view>
+  </view>
+</view>
+
+<view wx:if="{{no_sale}}" class="no_sale" bindtap="closeNoTap">
+  <view class="no_sale_sub">
+    <image src="../../img/null_two.png" class="icon-no"></image>
+    <view class="no_sale_notice">该商品已下架</view>
+  </view>
+</view>
+
+<view wx:elif="{{status=='unregisted'}}" class="unregisted flex-column">
+  <image src="../../img/1@3.png" class="null-cart"></image>
+  <view class="unregisted-notice">未登录</view>
+  <button class="btn-register" bindtap="goRegisterTap">登录</button>
+</view>

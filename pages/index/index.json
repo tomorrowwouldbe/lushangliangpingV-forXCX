@@ -1,0 +1,7 @@
+{
+  "usingComponents":{
+    "loadingC":"/components/loadingCircle/loading",
+    "cover":"/components/cover/cover"
+  },
+  "enablePullDownRefresh":false
+}

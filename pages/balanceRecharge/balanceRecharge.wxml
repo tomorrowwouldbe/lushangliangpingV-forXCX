@@ -1,0 +1,40 @@
+<view class="page-balanceRecharge">
+  <view class="recharge-column">
+    <view>充值金额</view>
+    <view class="reacharge-num">
+      <input class="recharge-input" type="digit" value="{{money}}" placeholder="建议转入100元以上" style="{{money.length>0&&'font-size:52rpx'}}" placeholder-style="color:#acacac;font-size:30rpx;" bindinput="moneyInput"></input>
+       <text class="recharge-sign" style="{{money.length>0&&'top:16rpx'}}">￥</text> 
+    </view>
+  </view>
+
+  <view class="recharge-items">
+    <view class="recharge-item clearfix" data-index="0" bindtap="selectTap">
+      <image lazy-load="true" src="../../img/wx_recharge.png" class="recharge-img lt"></image>
+      <text class="recharge-txt lt">微信</text>
+      <image lazy-load="true" src="../../img/{{selectedIndex==0?'checked_recharge.png':'check_recharge.png'}}" class="choose-iocn rt"></image>
+    </view>
+    <view class="recharge-item clearfix" data-index="1" bindtap="selectTap">
+      <image lazy-load="true" src="../../img/balance_recharge.png" class="recharge-img lt"></image>
+      <text class="recharge-txt lt">奖金余额【{{balance}}】</text>
+      <image lazy-load="true" src="../../img/{{selectedIndex==1?'checked_recharge.png':'check_recharge.png'}}" class="choose-iocn rt"></image>
+    </view>
+  </view>
+
+  <view wx:if="{{pwd_alert_show}}" bindtap="closePwdAlert" class="pwd-alert">
+    <view class="pwd-box" catchtap="openPwdAlert">
+      <view class="pwd-header">请输入支付密码</view>
+      <input class="pwd-input" type="number" password="true" maxlength="6" placeholder="请输入您的6位数字密码" bindinput="pwdInput"></input>
+      <view style="opacity:{{error_att?'1':'0'}}" class="pwd-att">您的密码有误，请重新输入</view>
+      <button type="warn" class="btn-confirm" catchtap="pwdConfirm">确认</button>
+    </view>
+  </view>
+
+  <view class="fixed-bottom-box">
+    <view class="attention" bindtap="knowTap">
+      <image lazy-load="true" src="../../img/{{isKnowed?'checked_recharge-1.png':'check_recharge-1.png'}}"  class="attention-choose"></image>
+      <text>我了解 充值到储值余额的奖金不可提现</text>
+    </view>
+    <button wx:if="{{isKnowed&&pay_status==true}}" type="warn" class="recharge-btn" bindtap="chargeTap">充值</button>
+    <button wx:else type="warn" class="recharge-btn disabled-btn">充值</button>
+  </view>
+</view> 

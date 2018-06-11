@@ -1,0 +1,74 @@
+{
+  "pages": [
+    "pages/guide/guide",
+    "pages/index/index",
+    "pages/mine/mine",
+    "pages/ordersList/ordersList",
+    "pages/cart/cart",
+    "pages/cate/cate",
+    "pages/productDetail/productDetail",
+    "pages/drawback/drawback",
+    "pages/orderDetail/orderDetail",
+    "pages/joinus/joinus",
+    "pages/becomeVip/becomeVip",
+    "pages/logistics/logistics",
+    "pages/myInvitation/myInvitation",
+    "pages/inviteFriends/inviteFriends",
+    "pages/balance/balance",
+    "pages/integral/integral",
+    "pages/coupons/coupons",
+    "pages/balanceRecharge/balanceRecharge",
+    "pages/selfInfor/selfInfor",
+    "pages/changePayKey/changePayKey",
+    "pages/merchant/merchant",
+    "pages/contentDetails/contentDetails",
+    "pages/register/register",
+    "pages/staffBuy/staffBuy",
+    "pages/submitOrder/submitOrder",
+    "pages/receiveAddrList/receiveAddrList",
+    "pages/payOrderSuc/payOrderSuc",
+    "pages/activity/activity"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "路上良品",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "color": "#555555",
+    "selectedColor": "#cf2122",
+    "borderStyle": "#ffffff",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "img/index.png",
+        "selectedIconPath": "img/index-b.png",
+        "text": "生活家"
+      },
+      {
+        "pagePath": "pages/cate/cate",
+        "iconPath": "img/cate.png",
+        "selectedIconPath": "img/cate-a.png",
+        "text": "分类"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "iconPath": "img/cart.png",
+        "selectedIconPath": "img/cart-a.png",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "iconPath": "img/mine.png",
+        "selectedIconPath": "img/mine-a.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 20000
+  }
+}

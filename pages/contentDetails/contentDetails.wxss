@@ -1,0 +1,30 @@
+@import '../../wxParse/wxParse.wxss';
+page{
+  background-color:#fff;
+  /* padding:20rpx; */
+}
+.cont-header{
+  color:#333;
+  font-size:40rpx;
+  line-height:40rpx;
+  margin:30rpx 0 40rpx 0;
+  padding:0 40rpx;
+}
+.cont-summary{
+  padding:0 30rpx;
+}
+.wxParse-p{
+  /* padding:0 10px; */
+  color:#999;
+}
+.wxParse-img{
+   width:100% !important; 
+}
+
+.fixed-btn{
+  position:fixed;
+  right:60rpx;
+  bottom:100rpx;
+  z-index:10;
+  width:100rpx;
+}

@@ -1,0 +1,72 @@
+.balance_banner{
+  width:100%;
+  height:100%;
+}
+
+.balance-header-box{
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:216rpx;
+}
+.balance-header{
+  position:absolute;
+  left:0;top:0;
+  width:100%;height:100%;
+  padding:40rpx;
+  color:#fff;
+  text-align:center;
+}
+.header-item{
+  width:50%;
+}
+.header-item:nth-child(1){
+  border-right:2rpx solid #eee;
+}
+.header-i-txt{
+  font-size:24rpx;
+  line-height:48rpx;
+}
+.header-i-num{
+  font-size:40rpx;
+  line-height:88rpx;
+}
+
+
+.charge-items{
+  margin-top:216rpx;
+  background-color:#fff;
+}
+.charge-item{
+  height:130rpx;
+  border-bottom:2rpx solid #ECECEC;
+  padding:20rpx;
+}
+.charge-i-left{
+  width:calc(100% - 240rpx);
+}
+.charge-i-right{
+  width:220rpx;
+  line-height:90rpx;
+  color:#cf2122;
+  font-size:40rpx;
+  text-align:right;
+}
+.charge-i-txt{
+  font-size:30rpx;
+  color:#666;
+  line-height:50rpx;
+}
+.charge-i-time{
+  color:#999;
+  font-size:26rpx;
+  line-height:40rpx;
+}
+
+
+.chargr-btn{
+  position:fixed;
+  left:0;right:0;bottom:20rpx;
+  width:90%;
+  height:80rpx;line-height:80rpx;
+  margin:0 auto;
+}

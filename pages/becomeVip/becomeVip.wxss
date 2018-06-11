@@ -1,0 +1,54 @@
+page{
+  background-color:#fff;
+  padding:100rpx 40rpx;
+}
+.logo{
+  width:300rpx;
+  margin-bottom:150rpx;
+}
+.vip-title{
+  width:100%;
+  color:#666;
+  font-size:30rpx;
+  margin-bottom:60rpx;
+}
+.vip-line{
+  color:#999;
+  margin-bottom:72rpx;
+  padding:24rpx 0;
+  border-bottom:2rpx solid #e5e5e5;
+}
+.price-sign{
+  font-size:40rpx;
+  height:60rpx;
+  line-height:76rpx;
+  margin-right:10rpx;
+}
+.vip-input{
+  width:60%;
+  font-size:60rpx;
+  height:60rpx;
+  line-height:60rpx;
+}
+
+.vip-btns{
+  width:100%;
+}
+.btn{
+  width:calc((100% - 72rpx)/2);
+  height:80rpx;
+  line-height:76rpx;
+  font-size:30rpx;
+  color:#fff;
+}
+.vip-btn{
+  margin-left:26rpx;
+  margin-right:20rpx;
+}
+
+.inviter{
+  position:fixed;
+  left:50%;right:0;bottom:20rpx;
+  width:50%;
+  color:#999;
+}

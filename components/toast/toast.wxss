@@ -1,0 +1,40 @@
+.fixed-toast{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:40rpx;
+  z-index:10000;
+  width:100%;
+  text-align:center;
+  animation:move 2s;
+	-webkit-animation:move 2s;
+}
+.toast-txt{
+  display:inline-block;
+  max-width:80%;
+  min-width:40%;
+  background-color:rgba(0,0,0,0.6);
+  color:#fff;
+  font-size:28rpx;
+  padding:20rpx;
+  border-radius:10rpx;
+}
+
+.text-overflow{
+  text-overflow: ellipsis;
+  white-space:nowrap;
+  overflow:hidden;
+}
+
+@keyframes move
+{
+  10%{
+    bottom:100rpx;
+  }
+  95%{
+    bottom:100rpx;
+  }
+  100%{
+    bottom:40rpx;
+  }
+}
